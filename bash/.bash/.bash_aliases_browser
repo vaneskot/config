@@ -1,0 +1,1 @@
+alias browser_build="gclient runhooks && ninja -C out/Debug"
