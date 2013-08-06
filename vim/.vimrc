@@ -204,7 +204,7 @@ inoremap <Left> <nop>
 inoremap <Right> <nop>
 
 " Switch between header and cpp file
-map <C-W>h :execute Toggle_H_CPP()<CR>
+map <C-W>g :execute Toggle_H_CPP_tags()<CR>
 
 map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <C-W><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
@@ -221,48 +221,104 @@ function! CHeader()
   4
 endfunction
 
-function! Toggle_H_CPP()
-    let l:ext=tolower(expand("%:e"))
+function! Enumerate_Print(l)
+  for i in range(0, len(a:l) - 1)
+    echo i a:l[i]
+  endfor
+endfunction
+
+function! Toggle_H_CPP_tags()
+  let l:ext = tolower(expand("%:e"))
  
-    echo l:ext
- 
-    let l:new_ext = ""
-    if l:ext == "c" || l:ext == "cpp" || l:ext == "cxx" || l:ext == "cc"
-        let l:new_ext="h"
-    elseif l:ext == "h" || l:ext == "hpp"
-        let l:new_ext="c"
-    else
-        return
+  let l:c_ext = "c\\(c\\|pp\\|xx\\)\\=$" 
+  let l:h_ext = "h\\(pp\\)\\=$"
+
+  if match(l:ext, "^" . l:c_ext) >= 0
+    let l:new_ext = l:h_ext
+  elseif match(l:ext, "^" . l:h_ext) >= 0
+    let l:new_ext = l:c_ext
+  else
+    return
+  endif
+
+  let l:tag_name = "\\C^" . expand("%:t:r") . "\\." . l:new_ext
+
+  let l:match_list = taglist(l:tag_name)
+  call map(l:match_list, 'v:val.filename')
+
+  let l:match_num = len(l:match_list)
+
+  if l:match_num < 1
+    " Tag not found, falling back to function using find
+    call Toggle_H_CPP_Find()
+    return
+  elseif l:match_num == 1
+    let l:line=l:match_list[0]
+  else
+    call Enumerate_Print(l:match_list)
+    let l:input=input("Which ? (CR=nothing)\n")
+    if strlen(l:input)==0
+      return
     endif
- 
-    let l:list=system("find . -name '".expand("%:t:r").".*' | grep -v \"~\" | grep -i \"\\.".l:new_ext."\" | grep -v \".svn/\" | perl -ne 'print \"$.\\t$_\"'")
-    let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
-    if l:num < 1
-        echo "'".a:name."' not found"
-        return
+    if match(l:input, "^\\d\\+$") < 0
+      echo "Not a number"
+      return
     endif
- 
-    if l:num != 1
-        echo l:list
-        let l:input=input("Which ? (CR=nothing)\n")
-        if strlen(l:input)==0
-            return
-        endif
-        if strlen(substitute(l:input, "[0-9]", "", "g"))>0
-            echo "Not a number"
-            return
-        endif
-        if l:input<1 || l:input>l:num
-            echo "Out of range"
-            return
-        endif
-        let l:line=matchstr("\n".l:list, "\n".l:input."\t[^\n]*")
-    else
-        let l:line=l:list
+    if l:input<0 || l:input>=l:match_num
+      echo "Out of range"
+      return
     endif
+    let l:line=l:match_list[l:input]
+  endif
+
+  execute "find ".l:line
+
+endfunction
+  
+" Taken from somewhere on the internet
+" TODO: check for optimization, refactor for better usage from Toggle_H_CPP_tags
+function! Toggle_H_CPP_Find()
+  let l:ext=tolower(expand("%:e"))
  
-    let l:line=substitute(l:line, "^[^\t]*\t./", "", "")
+  echo l:ext
  
-    """sf %:t:r.c
-    execute "find ".l:line
+  let l:new_ext = ""
+  if l:ext == "c" || l:ext == "cpp" || l:ext == "cxx" || l:ext == "cc"
+    let l:new_ext="h"
+  elseif l:ext == "h" || l:ext == "hpp"
+    let l:new_ext="c"
+  else
+    return
+  endif
+ 
+  let l:list=system("find . -name '".expand("%:t:r").".*' | grep -v \"~\" | grep -i \"\\.".l:new_ext."\" | grep -v \".svn/\" | perl -ne 'print \"$.\\t$_\"'")
+  let l:num=strlen(substitute(l:list, "[^\n]", "", "g"))
+  if l:num < 1
+    echo "'".a:name."' not found"
+    return
+  endif
+ 
+  if l:num != 1
+    echo l:list
+    let l:input=input("Which ? (CR=nothing)\n")
+    if strlen(l:input)==0
+      return
+    endif
+    if strlen(substitute(l:input, "[0-9]", "", "g"))>0
+      echo "Not a number"
+      return
+    endif
+    if l:input<1 || l:input>l:num
+      echo "Out of range"
+      return
+    endif
+    let l:line=matchstr("\n".l:list, "\n".l:input."\t[^\n]*")
+  else
+    let l:line=l:list
+  endif
+ 
+  let l:line=substitute(l:line, "^[^\t]*\t./", "", "")
+ 
+  """sf %:t:r.c
+  execute "find ".l:line
 endfunction
