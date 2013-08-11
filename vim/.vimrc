@@ -7,6 +7,8 @@ set nocompatible
 
 source ~/.vim/bundle/vundlerc
 
+let g:syntastic_cpp_checkers=['gcc', 'cpplint']
+
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -85,11 +87,12 @@ set tags+=./tags;$HOME
 if &t_Co > 2 || has("gui_running")
   set background=dark
   syntax on
-  if !has("linux")
-    colorscheme desert
-  else
-    colorscheme default
-  endif
+  colorscheme molokai
+"  if !has("linux")
+"    colorscheme desert
+"  else
+"    colorscheme default
+"  endif
   set hlsearch
 endif
 
