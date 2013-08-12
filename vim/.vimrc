@@ -5,11 +5,14 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
+" Vundle config
 source ~/.vim/bundle/vundlerc
 
+" Use gcc, then cpplint as cpp checkers
+" TODO: check whether the plugin is loaded
 let g:syntastic_cpp_checkers=['gcc', 'cpplint']
 
-" allow backspacing over everything in insert mode
+" Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
 "if has("vms")
@@ -25,12 +28,16 @@ if has("mac") || has("macunix")
   endif
 endif
 
-set history=500		" keep 500 lines of command line history
-set ruler		" show the cursor position all the time
-set showcmd		" display incomplete commands
-set incsearch		" do incremental searching
-set ignorecase " ignore case
-set smartcase " ignore register when all letters are lowercase
+" Keep 500 lines of command line history
+set history=500
+" Show the cursor position all the time
+set ruler
+" Display incomplete commands
+set showcmd
+set incsearch
+set ignorecase
+" Ignore register when all letters are lowercase
+set smartcase
 
 " Set tab to 2 spaces
 set expandtab
@@ -41,7 +48,8 @@ set sw=2
 :set colorcolumn=81
 
 set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
-set laststatus=2 " statusline always on
+" Statusline always on
+set laststatus=2
 
 " Vertical/horizontal scroll off settings
 set scrolloff=3
@@ -51,9 +59,12 @@ set sidescroll=1
 " Show numbers of lines to the left
 set number
 
-set wildmode=list:longest "make cmdline tab completion similar to bash
-set wildmenu "enable ctrl-n and ctrl-p to scroll thru matches
-set wildignore=*.o,*.obj,*~ "stuff to ignore when tab completing
+" Make cmdline tab completion similar to bash
+set wildmode=list:longest
+" Enable ctrl-n and ctrl-p to scroll thru matches
+set wildmenu
+" Stuff to ignore when tab completing
+set wildignore=*.o,*.obj,*~
 
 " Don't break the line, we have to goooo. cause there's no way back where we're coming from
 set nowrap
@@ -80,6 +91,7 @@ inoremap <C-U> <C-G>u<C-U>
 " We don't need no fckin mouse
 set mouse=
 
+" Search for tags file from the current directory up to $HOME directory
 set tags+=./tags;$HOME
 
 " Switch syntax highlighting on, when the terminal has colors
@@ -88,18 +100,11 @@ if &t_Co > 2 || has("gui_running")
   set background=dark
   syntax on
   colorscheme molokai
-"  if !has("linux")
-"    colorscheme desert
-"  else
-"    colorscheme default
-"  endif
   set hlsearch
 endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-
-  " Enable file type detection.
   " Use the default filetype settings, so that mail gets 'tw' set to 72,
   " 'cindent' is on in C files, etc.
   " Also load indent files, to automatically do language-dependent indenting.
@@ -123,14 +128,13 @@ if has("autocmd")
     \ endif
 
   augroup END
-
 else
-
-  set autoindent		" always set autoindenting on
-
+  " always set autoindenting on
+  set autoindent
 endif " has("autocmd")
 
-set formatoptions-=o "dont continue comments when pushing o/O
+" Dont continue comments when pushing o/O
+set formatoptions-=cro
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -151,17 +155,17 @@ if has("win32")
 elif has("unix")
   set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 else
-  " Russian support 
+  " Russian support for mac os
   set keymap=russian-jcuken 
   set iminsert=0 
   set imsearch=0
 endif
 
-"visual shifting
+" Visual shifting
 :vnoremap < <gv
 :vnoremap > >gv
 
-"folding
+" Folding
 :imap <F3> <ESC>zAi
 :nmap <F3> zA
 :imap <F4> <ESC>:set foldmethod=indent<CR>:set foldenable!<CR>i
@@ -171,16 +175,16 @@ endif
 :nmap <F5> o/*****************************************************<ESC>:left<CR>
 :nmap <F6> o*****************************************************/<ESC>:left<CR>
 
-"save
+" Save
 :imap <F8> <ESC>:w<CR>
 :nmap <F8> :w<CR>
 
-"exit
+" Exit
 :map <F9>  <ESC>:q<CR>
 :map <F10> <ESC>:wq<CR>
 :map <F11> <ESC>:wqa<CR>
 
-"change highlight search
+" Change highlight search
 :imap <F12> <ESC>:set hlsearch!<CR>i
 :nmap <F12> :set hlsearch!<CR>
 
@@ -195,6 +199,7 @@ nnoremap <silent> <PageDown> <C-D><C-D>
 vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 
+" Easy tab movement
 :nmap <C-h> :tabprevious<CR>
 :nmap <C-l> :tabnext<CR>
 
@@ -211,9 +216,13 @@ inoremap <Right> <nop>
 " Switch between header and cpp file
 map <C-W>g :A<CR>
 
+" Jump to tag in a new tab
 map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+
+" Jump to tag in a vertical split
 map <C-W><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
 
 " Functions
