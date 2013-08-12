@@ -18,6 +18,7 @@ Bundle 'Lokaltog/vim-easymotion'
 Bundle 'tpope/vim-sensible'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
+Bundle 'kien/ctrlp.vim'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
 
 " vim-scripts repos
