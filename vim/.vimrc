@@ -219,6 +219,10 @@ map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 " Jump to tag in a vertical split
 map <C-W><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" Useful newline bindings for normal mode
+map <BS> O<Esc>
+map <CR> o<Esc>
+
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
 
