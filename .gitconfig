@@ -1,0 +1,27 @@
+[user]
+	name = Ivan Kotenkov
+	email = kotenkov@yandex-team.ru
+[branch "master"]
+	rebase = true
+[merge]
+	tool = vimdiff
+[core]
+	editor = vim
+	autocrlf = false
+	safecrlf = false
+	deltaBaseCacheLimit = 1G
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[alias]
+	vd = difftool
+  g = grep --break --heading --line-number --color=always
+	ds = diff --stat
+	s = status
+[grep]
+	lineNumber = true
+[color]
+	ui = true
+[help]
+	autocorrect = 1
