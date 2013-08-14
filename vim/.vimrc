@@ -133,9 +133,6 @@ else
   set autoindent
 endif " has("autocmd")
 
-" Dont continue comments when pushing o/O
-set formatoptions-=cro
-
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
 " Only define it when not defined already.
@@ -224,6 +221,9 @@ map <C-W><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
+
+" Dont continue comments when pushing o/O
+au FileType * setl formatoptions-=cro
 
 " Functions
 
