@@ -98,8 +98,18 @@ set tags+=./tags;$HOME
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
   set background=dark
+
   syntax on
+
+  " from http://vim.wikia.com/wiki/Highlight_unwanted_spaces
+  highlight ExtraWhitespace ctermbg=lightgray guibg=lightgray
+  autocmd ColorScheme * highlight ExtraWhitespace ctermbg=lightgray guibg=lightgray
+  match ExtraWhitespace /\s\+$/
+  autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+  autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+
   colorscheme molokai
+
   set hlsearch
 endif
 
