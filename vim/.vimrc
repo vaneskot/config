@@ -21,6 +21,9 @@ set backspace=indent,eol,start
 "  set backup		" keep a backup file
 "endif
 
+set undofile
+set undodir=~/.vim/undodir
+
 " Allow system clipboard on macos
 if has("mac") || has("macunix")
   if has("clipboard")
