@@ -233,6 +233,9 @@ map <C-W><C-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 map <BS> O<Esc>
 map <CR> o<Esc>
 
+" Paste path to current file in command mode
+cmap <leader>e <C-r>=expand("%:h")<CR>/
+
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
 
