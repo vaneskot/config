@@ -190,10 +190,6 @@ map <F10> <ESC>:wq<CR>
 map <F11> <ESC>:wqa<CR>
 map <leader>q :tabclose<CR>
 
-" Change highlight search
-imap <F12> <ESC>:set hlsearch!<CR>i
-nmap <F12> :set hlsearch!<CR>
-
 " Remove trailing spaces
 nmap <S-F12> :%s/ *$//<CR><C-O>
 
@@ -235,6 +231,9 @@ cmap <leader>e <C-r>=expand("%:h")<CR>/
 " Fast .vimrc access
 map <leader>vt :tabe ~/.vimrc<CR>
 map <leader>vs :source ~/.vimrc<CR>
+
+" Clear highlight
+map <silent> <leader>c :nohlsearch<CR>
 
 " Plugin maps
 
