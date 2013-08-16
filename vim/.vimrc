@@ -224,9 +224,6 @@ inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 
-" Switch between header and cpp file
-map <C-W>g :A<CR>
-
 " Jump to tag in a new tab
 map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
@@ -243,6 +240,18 @@ cmap <leader>e <C-r>=expand("%:h")<CR>/
 " Fast .vimrc access
 map <leader>vt :tabe ~/.vimrc<CR>
 map <leader>vs :source ~/.vimrc<CR>
+
+" Plugin maps
+
+" Switch between header and cpp file
+map <leader>h :A<CR>
+
+map <leader>u :GundoToggle<CR>
+
+map <leader>s :tabe %<CR>:Gstatus<CR>
+nmap <leader>b :.Gblame<CR>
+vmap <leader>b :Gblame<CR>
+map <leader>B :Gblame<CR>
 
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
