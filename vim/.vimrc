@@ -48,7 +48,7 @@ set ts=2
 set sw=2
 
 " Highlight 81 column
-:set colorcolumn=81
+set colorcolumn=81
 
 set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
 " Statusline always on
@@ -172,34 +172,34 @@ else
 endif
 
 " Visual shifting
-:vnoremap < <gv
-:vnoremap > >gv
+vnoremap < <gv
+vnoremap > >gv
 
 " Folding
-:imap <F3> <ESC>zAi
-:nmap <F3> zA
-:imap <F4> <ESC>:set foldmethod=indent<CR>:set foldenable!<CR>i
-:nmap <F4> :set foldmethod=indent<CR>:set foldenable!<CR>
+imap <F3> <ESC>zAi
+nmap <F3> zA
+imap <F4> <ESC>:set foldmethod=indent<CR>:set foldenable!<CR>i
+nmap <F4> :set foldmethod=indent<CR>:set foldenable!<CR>
 
 " Comments in c
-:nmap <F5> o/*****************************************************<ESC>:left<CR>
-:nmap <F6> o*****************************************************/<ESC>:left<CR>
+nmap <F5> o/*****************************************************<ESC>:left<CR>
+nmap <F6> o*****************************************************/<ESC>:left<CR>
 
 " Save
-:imap <F8> <ESC>:w<CR>
-:nmap <F8> :w<CR>
+imap <F8> <ESC>:w<CR>
+nmap <F8> :w<CR>
 
 " Exit
-:map <F9>  <ESC>:q<CR>
-:map <F10> <ESC>:wq<CR>
-:map <F11> <ESC>:wqa<CR>
+map <F9>  <ESC>:q<CR>
+map <F10> <ESC>:wq<CR>
+map <F11> <ESC>:wqa<CR>
 
 " Change highlight search
-:imap <F12> <ESC>:set hlsearch!<CR>i
-:nmap <F12> :set hlsearch!<CR>
+imap <F12> <ESC>:set hlsearch!<CR>i
+nmap <F12> :set hlsearch!<CR>
 
 " Remove trailing spaces
-:nmap <S-F12> :%s/ *$//<CR><C-O>
+nmap <S-F12> :%s/ *$//<CR><C-O>
 
 nnoremap <silent> <PageUp> <C-U><C-U>
 vnoremap <silent> <PageUp> <C-U><C-U>
@@ -210,8 +210,8 @@ vnoremap <silent> <PageDown> <C-D><C-D>
 inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 
 " Easy tab movement
-:nmap <C-h> :tabprevious<CR>
-:nmap <C-l> :tabnext<CR>
+nmap <C-h> :tabprevious<CR>
+nmap <C-l> :tabnext<CR>
 
 " Forbid arrow movement
 noremap <Up> <nop>
