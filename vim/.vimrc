@@ -239,6 +239,10 @@ map <CR> o<Esc>
 " Paste path to current file in command mode
 cmap <leader>e <C-r>=expand("%:h")<CR>/
 
+" Fast .vimrc access
+map <leader>vt :tabe ~/.vimrc<CR>
+map <leader>vs :source ~/.vimrc<CR>
+
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
 
