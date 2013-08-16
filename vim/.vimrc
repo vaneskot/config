@@ -193,6 +193,7 @@ nmap <F8> :w<CR>
 map <F9>  <ESC>:q<CR>
 map <F10> <ESC>:wq<CR>
 map <F11> <ESC>:wqa<CR>
+map <leader>q :tabclose<CR>
 
 " Change highlight search
 imap <F12> <ESC>:set hlsearch!<CR>i
