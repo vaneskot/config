@@ -21,7 +21,8 @@ function battery_info()
   elif [[ $platform == 'Darwin' ]]; then
     capacity_cur=`ioreg -c AppleSmartBattery -w0 | grep CurrentCapacity | awk '{print $5}'`
     capacity_max=`ioreg -c AppleSmartBattery -w0 | grep MaxCapacity | awk '{print $5}'`
-    capacity_perc=`awk "BEGIN{print $capacity_cur/$capacity_max}" | awk '{print(substr($0, 3, 2) "%")}'`
+    #capacity_perc=`awk "BEGIN{print $capacity_cur/$capacity_max}" | awk '{print(substr($0, 3, 2) "%")}'`
+    capacity_perc=`expr $capacity_cur \* 100 / $capacity_max`"%"
   fi
   echo $capacity_perc
 }
