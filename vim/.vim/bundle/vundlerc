@@ -11,15 +11,16 @@ Bundle 'gmarik/vundle'
 " My Bundles here:
 "
 " original repos on github
-Bundle 'tpope/vim-fugitive'
 Bundle 'Lokaltog/vim-easymotion'
-"Bundle 'rstacruz/sparkup', {'rtp': 'vim/'}
-"Bundle 'tpope/vim-rails.git'
-Bundle 'tpope/vim-sensible'
+Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
 Bundle 'sjl/gundo.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-surround'
 
 " vim-scripts repos
 Bundle 'L9'
