@@ -38,6 +38,7 @@ set ruler
 " Display incomplete commands
 set showcmd
 set incsearch
+set gdefault
 set ignorecase
 " Ignore register when all letters are lowercase
 set smartcase
@@ -61,6 +62,10 @@ set sidescroll=1
 
 " Show numbers of lines to the left
 set number
+" Show relative numbers of lines
+set relativenumber
+" Higlight current line
+set cursorline
 
 " Make cmdline tab completion similar to bash
 set wildmode=list:longest
@@ -161,8 +166,8 @@ elif has("unix")
   set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 else
   " Russian support for mac os
-  set keymap=russian-jcuken 
-  set iminsert=0 
+  set keymap=russian-jcuken
+  set iminsert=0
   set imsearch=0
 endif
 
@@ -189,9 +194,6 @@ map <F9>  <ESC>:q<CR>
 map <F10> <ESC>:wq<CR>
 map <F11> <ESC>:wqa<CR>
 map <leader>q :tabclose<CR>
-
-" Remove trailing spaces
-nmap <S-F12> :%s/ *$//<CR><C-O>
 
 nnoremap <silent> <PageUp> <C-U><C-U>
 vnoremap <silent> <PageUp> <C-U><C-U>
@@ -235,10 +237,20 @@ map <leader>vs :source ~/.vimrc<CR>
 " Clear highlight
 map <silent> <leader>c :nohlsearch<CR>
 
+" Remove trailing spaces
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR><C-O>
+
+" Exit insert mode with jj
+map! jj <Esc>
+
+" Run python file
+map <leader>p :!python %<CR>
+
 " Plugin maps
 
 " Switch between header and cpp file
-map <leader>h :A<CR>
+map <leader>hh :A<CR>
+map <leader>hv <C-w><C-v><leader>hh
 
 map <leader>u :GundoToggle<CR>
 
@@ -246,6 +258,11 @@ map <leader>s :tabe %<CR>:Gstatus<CR>
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
+
+map <leader>tt :tab tag 
+map <leader>th :tab tag <C-R><C-W>.h<CR>
+
+map <leader>cs :tab cs find s <C-R><C-W><CR>
 
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CHeader()
