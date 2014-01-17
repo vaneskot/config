@@ -10,3 +10,4 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias vim=/Applications/MacVim.app/Contents/MacOS/Vim
+alias ack='ack --ignore-file=is:tags --ignore-file=ext:out'

@@ -5,3 +5,4 @@ export ENV=$HOME/.bash/.bashrc
 . ~/.bash/git-completion.bash
 export PATH=/Users/kotenkov/projects/depot_tools_ya:/Users/kotenkov/bin:/usr/local/bin:$PATH
 export GYP_GENERATORS=ninja
+[[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
