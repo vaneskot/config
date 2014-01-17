@@ -14,8 +14,11 @@
 	tool = vimdiff
 [difftool]
 	prompt = false
+[multidiff]
+  tool = vd -f
 [alias]
 	vd = difftool
+  md = multidiff
   g = grep --break --heading --line-number --color=always
 	ds = diff --stat
 	s = status
