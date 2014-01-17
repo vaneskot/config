@@ -27,6 +27,10 @@ function battery_info()
   echo $capacity_perc
 }
 
+if [[ $platform == 'Darwin' ]]; then
+  pman() { man -a -t "${1}" | open -f -a /Applications/Preview.app; }
+fi
+
 . ~/.bash/git-prompt.sh
 
 PS1='\n\[\033[01;32m\]\u@\h\[\033[00m\]: \[\033[01;34m\]\w \[\033[1;35m\]$(battery_info) \[\033[01;31m\]$(__git_ps1 "(%s)")\n\[\033[00m\]\$ '
