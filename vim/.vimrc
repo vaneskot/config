@@ -113,6 +113,9 @@ if &t_Co > 2 || has("gui_running")
 
   colorscheme molokai
 
+  " Highlight cursorline with light gray bgcolor
+  highlight CursorLine ctermbg=237
+
   set hlsearch
 endif
 
@@ -193,7 +196,7 @@ nmap <F8> :w<CR>
 map <F9>  <ESC>:q<CR>
 map <F10> <ESC>:wq<CR>
 map <F11> <ESC>:wqa<CR>
-map <leader>q :tabclose<CR>
+map <leader>q :tabclose<CR>:tabprevious<CR>
 
 nnoremap <silent> <PageUp> <C-U><C-U>
 vnoremap <silent> <PageUp> <C-U><C-U>
@@ -206,6 +209,10 @@ inoremap <silent> <PageDown> <C-\><C-O><C-D><C-\><C-O><C-D>
 " Easy tab movement
 nmap <C-h> :tabprevious<CR>
 nmap <C-l> :tabnext<CR>
+
+" End of the line - start of the line
+nmap H ^
+nmap L $
 
 " Forbid arrow movement
 noremap <Up> <nop>
@@ -261,6 +268,7 @@ map <leader>B :Gblame<CR>
 
 map <leader>tt :tab tag 
 map <leader>th :tab tag <C-R><C-W>.h<CR>
+map <leader>tj :tab tj <C-R><C-W><CR>
 
 map <leader>cs :tab cs find s <C-R><C-W><CR>
 
