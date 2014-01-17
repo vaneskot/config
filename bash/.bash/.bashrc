@@ -17,7 +17,7 @@ platform=`uname`
 function battery_info()
 {
   if [[ $platform == 'Linux' ]]; then
-    capacity_perc=`acpi|awk '{ print $4 }'|sed 's/,$//'`
+    capacity_perc=`acpi | awk '{ print $4 }' | sed 's/,$//'`
   elif [[ $platform == 'Darwin' ]]; then
     capacity_cur=`ioreg -c AppleSmartBattery -w0 | grep CurrentCapacity | awk '{print $5}'`
     capacity_max=`ioreg -c AppleSmartBattery -w0 | grep MaxCapacity | awk '{print $5}'`
