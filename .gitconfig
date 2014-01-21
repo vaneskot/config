@@ -1,19 +1,19 @@
 [user]
-	name = Ivan Kotenkov
-	email = kotenkov@yandex-team.ru
+  name = Ivan Kotenkov
+  email = kotenkov@yandex-team.ru
 [branch "master"]
-	rebase = true
+  rebase = true
 [merge]
-	tool = vimdiff
+  tool = vimdiff
 [core]
-	autocrlf = false
-	deltaBaseCacheLimit = 1G
-	editor = vim
-	safecrlf = false
+  autocrlf = false
+  deltaBaseCacheLimit = 1G
+  editor = vim
+  safecrlf = false
 [diff]
-	tool = vimdiff
+  tool = vimdiff
 [difftool]
-	prompt = false
+  prompt = false
 [multidiff]
   tool = vd -f
 [alias]
@@ -21,14 +21,14 @@
   ch = checkout
   co = commit
   d = diff
-	ds = diff --stat
+  ds = diff --stat
   g = grep --break --heading --line-number --color=always
   md = multidiff
-	s = status
-	vd = difftool
+  s = status
+  vd = difftool
 [grep]
-	lineNumber = true
+  lineNumber = true
 [color]
-	ui = true
+  ui = true
 [help]
-	autocorrect = 1
+  autocorrect = 1
