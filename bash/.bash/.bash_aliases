@@ -10,6 +10,8 @@ alias l='ls -CF'
 alias ll='ls -alF'
 alias la='ls -A'
 
+alias du='du -h'
+
 alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
@@ -17,3 +19,5 @@ alias ack='ack --ignore-file=is:tags --ignore-file=ext:out'
 
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
+
+alias src='. ~/.bash_profile'
