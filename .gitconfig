@@ -6,10 +6,10 @@
 [merge]
 	tool = vimdiff
 [core]
-	editor = vim
 	autocrlf = false
-	safecrlf = false
 	deltaBaseCacheLimit = 1G
+	editor = vim
+	safecrlf = false
 [diff]
 	tool = vimdiff
 [difftool]
@@ -17,11 +17,15 @@
 [multidiff]
   tool = vd -f
 [alias]
-	vd = difftool
-  md = multidiff
-  g = grep --break --heading --line-number --color=always
+  b = branch
+  ch = checkout
+  co = commit
+  d = diff
 	ds = diff --stat
+  g = grep --break --heading --line-number --color=always
+  md = multidiff
 	s = status
+	vd = difftool
 [grep]
 	lineNumber = true
 [color]
