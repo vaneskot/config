@@ -67,6 +67,9 @@ set relativenumber
 " Higlight current line
 set cursorline
 
+" Allow the cursor to go in to "invalid" places
+set virtualedit=all
+
 " Make cmdline tab completion similar to bash
 set wildmode=list:longest
 " Enable ctrl-n and ctrl-p to scroll thru matches
@@ -280,10 +283,26 @@ au FileType * setl formatoptions-=cro
 
 " Functions
 
+function! BashHasCommand(command)
+  return stridx(system('command -v ' . a:command), a:command) != -1
+endfunction
+
+function! GetUserName()
+  let s:default_user_name = "Ivan Kotenkov"
+  return BashHasCommand('git') ? system('git config --get user.name')[:-2] : s:default_user_name
+endfunction
+
+function! GetUserEmail()
+  let s:default_user_email = "kotenkov@yandex-team.ru"
+  return BashHasCommand('git') ? system('git config --get user.email')[:-2] : s:default_user_email
+endfunction
+
 function! CHeader()
-  let name = substitute(expand("%:t"), "[.]", "_", "")
-  let new_name = substitute(name, ".*", "\\U\\0", "")
-  let str_list = ["#ifndef " . new_name, "#define " . new_name, "", "", "", "#endif // " .  new_name]
-  call setline (line("."), str_list)
-  4
+  let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
+  let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
+  let s:name = substitute(expand("%:t"), "[.]", "_", "")
+  let s:new_name = substitute(s:name, ".*", "\\U\\0", "")
+  let s:str_list = [s:copyright, s:author, "", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
+  call setline (line("."), s:str_list)
+  7
 endfunction
