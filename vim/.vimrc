@@ -131,21 +131,29 @@ if has("autocmd")
 
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
-  au!
+    au!
 
-  " For all text files set 'textwidth' to 80 characters.
-  autocmd FileType text setlocal textwidth=80
+    " For all text files set 'textwidth' to 80 characters.
+    autocmd FileType text setlocal textwidth=80
 
-  " When editing a file, always jump to the last known cursor position.
-  " Don't do it when the position is invalid or when inside an event handler
-  " (happens when dropping a file on gvim).
-  " Also don't do it when the mark is in the first line, that is the default
-  " position when opening a file.
-  autocmd BufReadPost *
-    \ if line("'\"") > 1 && line("'\"") <= line("$") |
-    \   exe "normal! g`\"" |
-    \ endif
+    " When editing a file, always jump to the last known cursor position.
+    " Don't do it when the position is invalid or when inside an event handler
+    " (happens when dropping a file on gvim).
+    " Also don't do it when the mark is in the first line, that is the default
+    " position when opening a file.
+    autocmd BufReadPost *
+      \ if line("'\"") > 1 && line("'\"") <= line("$") |
+      \   exe "normal! g`\"" |
+      \ endif
 
+  augroup END
+
+  augroup filetype
+    au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile vundlerc set filetype=vim expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile .bash_aliases set filetype=sh expandtab tabstop=2 shiftwidth=2
   augroup END
 else
   " always set autoindenting on
