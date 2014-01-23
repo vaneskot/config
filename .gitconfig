@@ -10,6 +10,7 @@
   deltaBaseCacheLimit = 1G
   editor = vim
   safecrlf = false
+  preloadindex = true
 [diff]
   tool = vimdiff
 [difftool]
