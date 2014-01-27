@@ -2,3 +2,4 @@
   - different tabstop/shiftwidth for webkit and others
   - don't insert copyright when not at work (how to determine correctly?)
   - insert copyright and header include into new cpp/cc file
+  - jump to already opened file
