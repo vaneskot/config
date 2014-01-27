@@ -21,3 +21,5 @@ alias ..='cd ..'
 alias ...='cd .. ; cd ..'
 
 alias src='. ~/.bash_profile'
+
+alias qmake='qmake -spec macx-g++'
