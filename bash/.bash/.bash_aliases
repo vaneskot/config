@@ -5,7 +5,12 @@ alias moke='make 2>&1 | more'
 alias cmake_debug='cmake -DCMAKE_BUILD_TYPE="Debug"'
 alias cmake_release='cmake -DCMAKE_BUILD_TYPE="Release"'
 
-alias ls='ls -G'
+
+if [[ $platform == 'Darwin' ]]; then
+  alias ls='ls -G'
+else
+  alias ls='ls --color=auto'
+fi
 alias l='ls -CF'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -22,10 +27,14 @@ alias ...='cd .. ; cd ..'
 
 alias src='. ~/.bash_profile'
 
-alias qmake='qmake -spec macx-g++'
+if [[ $platform == 'Darwin' ]]; then
+  alias qmake='qmake -spec macx-g++'
+  alias pr_create='create-pull-request.rb -f origin -u origin/master -j -s'
+  alias pr_create_merge='create-pull-request.rb -f kotenkov --no-jira-link -s -u'
+fi
 
-alias pr_create='create-pull-request.rb -f origin -u origin/master -j -s'
-alias pr_create_merge='create-pull-request.rb -f kotenkov --no-jira-link -s -u'
-
-alias activate-shad='source ~/virtualenv/shad-env/bin/activate'
-alias notebook='ipython notebook --pylab=inline'
+shad_activate=$HOME/virtualenv/shad-env/bin/activate
+if [ -f $shad_activate ]; then
+  alias activate-shad="source $shad_activate"
+  alias notebook='ipython notebook --pylab=inline'
+fi
