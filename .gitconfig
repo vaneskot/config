@@ -33,3 +33,5 @@
   ui = true
 [help]
   autocorrect = 1
+[remote "origin"]
+  prune = true
