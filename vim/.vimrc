@@ -277,14 +277,17 @@ nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
 
-map <leader>tt :tab tag 
+map <leader>tt :tab tag
 map <leader>th :tab tag <C-R><C-W>.h<CR>
 map <leader>tj :tab tj <C-R><C-W><CR>
 
 map <leader>cs :tab cs find s <C-R><C-W><CR>
 
 " Automatically add define guards to a header file
-autocmd BufNewFile *.h call CHeader()
+autocmd BufNewFile *.h call CppHeaderNewFile()
+autocmd BufNewFile *.hpp call CppHeaderNewFile()
+autocmd BufNewFile *.cpp call CppImplNewFile()
+autocmd BufNewFile *.cc call CppImplNewFile()
 
 " Dont continue comments when pushing o/O
 au FileType * setl formatoptions-=cro
@@ -301,16 +304,29 @@ function! GetUserName()
 endfunction
 
 function! GetUserEmail()
-  let s:default_user_email = "kotenkov@yandex-team.ru"
+  let s:default_user_email = "ivan.kotenkov@gmail.com"
   return BashHasCommand('git') ? system('git config --get user.email')[:-2] : s:default_user_email
 endfunction
 
-function! CHeader()
+function! CppAuthor()
   let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
   let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
+  let s:result_list = [s:author]
+  if (match(s:author, "yandex-team") != -1)
+    call insert(s:result_list, s:copyright)
+  endif
+  return s:result_list
+endfunction
+
+function! CppHeaderNewFile()
   let s:name = substitute(expand("%:t"), "[.]", "_", "")
-  let s:new_name = substitute(s:name, ".*", "\\U\\0", "")
-  let s:str_list = [s:copyright, s:author, "", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
-  call setline (line("."), s:str_list)
+  let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
+  let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
+  call setline(line("."), s:str_list)
   7
+endfunction
+
+function! CppImplNewFile()
+  call setline(line("."), CppAuthor() + ["", ""])
+  4
 endfunction
