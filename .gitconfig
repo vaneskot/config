@@ -25,7 +25,7 @@
   ds = diff --stat
   g = grep --break --heading --line-number --color=always
   md = multidiff
-  s = status
+  s = status -uno
   vd = difftool
 [grep]
   lineNumber = true
