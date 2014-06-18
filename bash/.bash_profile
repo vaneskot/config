@@ -1,3 +1,7 @@
+if [ -n "$SSH_CLIENT" ] && [ $TERM != "screen-256color" ];
+then
+  screen -R
+fi
 . ~/.bash/.bashrc
 export ENV=$HOME/.bash/.bashrc
 . ~/.bash/.bash_aliases

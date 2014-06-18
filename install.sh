@@ -23,4 +23,5 @@ link .vimrc vim
 link .vim vim
 link .gitconfig .
 link scripts .
+link .screenrc
 cd -
