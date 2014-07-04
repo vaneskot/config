@@ -282,6 +282,7 @@ map <leader>th :tab tag <C-R><C-W>.h<CR>
 map <leader>tj :tab tj <C-R><C-W><CR>
 
 map <leader>cs :tab cs find s <C-R><C-W><CR>
+map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
 
 " Automatically add define guards to a header file
 autocmd BufNewFile *.h call CppHeaderNewFile()

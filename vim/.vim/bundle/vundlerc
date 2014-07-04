@@ -12,6 +12,7 @@ Bundle 'gmarik/vundle'
 "
 " original repos on github
 Bundle 'Lokaltog/vim-easymotion'
+Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
