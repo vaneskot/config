@@ -29,7 +29,7 @@ alias src='. ~/.bash_profile'
 
 if [[ $platform == 'Darwin' ]]; then
   alias qmake='qmake -spec macx-g++'
-  alias pr_create='create-pull-request.rb -f origin -u origin/master -j -s'
+  alias pr_create='create-pull-request.rb -f origin -u origin/master --no-jira-link -s'
   alias pr_create_merge='create-pull-request.rb -f kotenkov --no-jira-link -s -u'
 fi
 
