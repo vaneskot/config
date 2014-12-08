@@ -285,6 +285,8 @@ map <leader>s :tabe %<CR>:Gstatus<CR>
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
+map <leader>gC :!git checkout %<CR>
+map <leader>ga :!git add %<CR>
 
 map <leader>tt :tab tag
 map <leader>th :tab tag <C-R><C-W>.h<CR>
