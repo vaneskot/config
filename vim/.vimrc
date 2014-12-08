@@ -52,7 +52,9 @@ set ts=2
 set sw=2
 
 " Highlight 81 column
-set colorcolumn=81
+if version >= 703
+  set colorcolumn=81
+end
 
 set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
 " Statusline always on
