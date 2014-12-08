@@ -12,6 +12,9 @@ source ~/.vim/bundle/vundlerc
 " TODO: check whether the plugin is loaded
 let g:syntastic_cpp_checkers=['gcc', 'cpplint']
 
+let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
+let g:alternateExtensions_mm = "h"
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
