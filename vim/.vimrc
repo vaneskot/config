@@ -267,6 +267,12 @@ map! jj <Esc>
 " Run python file
 map <leader>p :!python %<CR>
 
+" Allow bash-like movement with CTRL-E and CTRL-A in command and insert modes.
+cnoremap <c-e> <end>
+imap     <c-e> <c-o>$
+cnoremap <c-a> <home>
+imap     <c-a> <c-o>^
+
 " Plugin maps
 
 " Switch between header and cpp file
