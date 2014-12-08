@@ -60,8 +60,11 @@ set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
 " Statusline always on
 set laststatus=2
 
-" Vertical/horizontal scroll off settings
-set scrolloff=3
+" Minimal number of lines to keep above and below the cursor
+" Typewriter mode = keep current line in the center
+set scrolloff=999
+
+" Horizontal scroll off settings
 set sidescrolloff=7
 set sidescroll=1
 
@@ -229,6 +232,14 @@ nmap <C-l> :tabnext<CR>
 " End of the line - start of the line
 nmap H ^
 nmap L $
+
+" Search matches are always in center
+nmap n nzz
+nmap N Nzz
+nmap * *zz
+nmap # #zz
+nmap g* g*zz
+nmap g# g#zz
 
 " Forbid arrow movement
 noremap <Up> <nop>
