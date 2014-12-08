@@ -6,7 +6,31 @@
 set nocompatible
 
 " Vundle config
-source ~/.vim/bundle/vundlerc
+filetype off                   " required!
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle 'git://github.com/scrooloose/nerdtree.git'
+Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
+Bundle 'https://github.com/chrisbra/NrrwRgn.git'
+Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'kien/ctrlp.vim'
+Bundle 'scrooloose/syntastic'
+Bundle 'sjl/gundo.vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'tpope/vim-fugitive'
+Bundle 'tpope/vim-repeat'
+Bundle 'tpope/vim-sensible'
+Bundle 'tpope/vim-surround'
+" vim-scripts repos
+Bundle 'L9'
+Bundle 'molokai'
+
+filetype plugin indent on     " required!
 
 " Use gcc, then cpplint as cpp checkers
 " TODO: check whether the plugin is loaded
@@ -132,11 +156,6 @@ endif
 
 " Only do this part when compiled with support for autocommands.
 if has("autocmd")
-  " Use the default filetype settings, so that mail gets 'tw' set to 72,
-  " 'cindent' is on in C files, etc.
-  " Also load indent files, to automatically do language-dependent indenting.
-  filetype plugin indent on
-
   " Put these in an autocmd group, so that we can delete them easily.
   augroup vimrcEx
     au!
