@@ -39,6 +39,16 @@ let g:syntastic_cpp_checkers=['gcc', 'cpplint']
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
 let g:alternateExtensions_mm = "h"
 
+" NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=0
+" Disable display of the 'Bookmarks' label and 'Press ? for help' text
+let NERDTreeMinimalUI=1
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
