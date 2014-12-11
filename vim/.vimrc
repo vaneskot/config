@@ -17,6 +17,7 @@ Bundle 'git://github.com/scrooloose/nerdtree.git'
 Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'Lokaltog/vim-easymotion'
 Bundle 'kien/ctrlp.vim'
 Bundle 'scrooloose/syntastic'
@@ -31,23 +32,6 @@ Bundle 'L9'
 Bundle 'molokai'
 
 filetype plugin indent on     " required!
-
-" Use gcc, then cpplint as cpp checkers
-" TODO: check whether the plugin is loaded
-let g:syntastic_cpp_checkers=['gcc', 'cpplint']
-
-let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
-let g:alternateExtensions_mm = "h"
-
-" NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=2
-let NERDTreeQuitOnOpen=1
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=0
-" Disable display of the 'Bookmarks' label and 'Press ? for help' text
-let NERDTreeMinimalUI=1
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -315,6 +299,58 @@ imap     <c-e> <c-o>$
 cnoremap <c-a> <home>
 imap     <c-a> <c-o>^
 
+map <leader>tt :tab tag
+map <leader>th :tab tag <C-R><C-W>.h<CR>
+map <leader>tj :tab tj <C-R><C-W><CR>
+
+map <leader>cs :tab cs find s <C-R><C-W><CR>
+map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
+
+" Dont continue comments when pushing o/O
+au FileType * setl formatoptions-=cro
+
+
+" Plugin settings
+
+" Use gcc, then cpplint as cpp checkers
+" TODO: check whether the plugin is loaded
+let g:syntastic_cpp_checkers=['gcc', 'cpplint']
+
+let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
+let g:alternateExtensions_mm = "h"
+
+" NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+let NERDTreeShowBookmarks=1
+let NERDTreeChDirMode=2
+let NERDTreeQuitOnOpen=1
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=0
+" Disable display of the 'Bookmarks' label and 'Press ? for help' text
+let NERDTreeMinimalUI=1
+
+let g:rbpt_colorpairs = [
+  \ ['Darkblue',    'SeaGreen3'],
+  \ ['darkgray',    'DarkOrchid3'],
+  \ ['darkgreen',   'firebrick3'],
+  \ ['darkcyan',    'RoyalBlue3'],
+	\ ['darkmagenta', 'DarkOrchid3'],
+	\ ['darkred',     'DarkOrchid3'],
+  \ ]
+
+if has("autocmd")
+  au VimEnter * RainbowParenthesesToggle
+  au Syntax * RainbowParenthesesLoadBraces
+  au Syntax * RainbowParenthesesLoadRound
+  au Syntax * RainbowParenthesesLoadSquare
+
+  " Automatically add define guards to a header file
+  autocmd BufNewFile *.h call CppHeaderNewFile()
+  autocmd BufNewFile *.hpp call CppHeaderNewFile()
+  autocmd BufNewFile *.cpp call CppImplNewFile()
+  autocmd BufNewFile *.cc call CppImplNewFile()
+endif
+
 " Plugin maps
 
 " Switch between header and cpp file
@@ -329,22 +365,6 @@ vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
-
-map <leader>tt :tab tag
-map <leader>th :tab tag <C-R><C-W>.h<CR>
-map <leader>tj :tab tj <C-R><C-W><CR>
-
-map <leader>cs :tab cs find s <C-R><C-W><CR>
-map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
-
-" Automatically add define guards to a header file
-autocmd BufNewFile *.h call CppHeaderNewFile()
-autocmd BufNewFile *.hpp call CppHeaderNewFile()
-autocmd BufNewFile *.cpp call CppImplNewFile()
-autocmd BufNewFile *.cc call CppImplNewFile()
-
-" Dont continue comments when pushing o/O
-au FileType * setl formatoptions-=cro
 
 " Functions
 
