@@ -170,6 +170,7 @@ if has("autocmd")
     au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
     au! BufRead,BufNewFile vundlerc set filetype=vim expandtab tabstop=2 shiftwidth=2
     au! BufRead,BufNewFile .bash_aliases set filetype=sh expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile */WebKit/*.cpp,*/WebKit/*.h  set filetype=cpp expandtab tabstop=4 shiftwidth=4
   augroup END
 else
   " always set autoindenting on
