@@ -27,6 +27,7 @@
   md = multidiff
   s = status -uno
   vd = difftool
+  rh = reset HEAD
 [grep]
   lineNumber = true
 [color]
