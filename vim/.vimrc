@@ -11,22 +11,23 @@ filetype off                   " required!
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-Bundle 'gmarik/vundle'
+Bundle 'https://github.com/gmarik/vundle.git'
 
-Bundle 'git://github.com/scrooloose/nerdtree.git'
-Bundle 'git://github.com/vim-scripts/IndexedSearch.git'
+Bundle 'https://github.com/AndrewRadev/switch.vim.git'
+Bundle 'https://github.com/Lokaltog/vim-easymotion.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
-Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'scrooloose/syntastic'
-Bundle 'sjl/gundo.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-repeat'
-Bundle 'tpope/vim-sensible'
-Bundle 'tpope/vim-surround'
+Bundle 'https://github.com/scrooloose/nerdtree.git'
+Bundle 'https://github.com/scrooloose/syntastic.git'
+Bundle 'https://github.com/sjl/gundo.vim.git'
+Bundle 'https://github.com/tpope/vim-commentary.git'
+Bundle 'https://github.com/tpope/vim-fugitive.git'
+Bundle 'https://github.com/tpope/vim-repeat.git'
+Bundle 'https://github.com/tpope/vim-sensible.git'
+Bundle 'https://github.com/tpope/vim-surround.git'
+Bundle 'https://github.com/vim-scripts/IndexedSearch.git'
+Bundle 'https://github.com/vim-scripts/a.vim.git'
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'molokai'
@@ -281,6 +282,9 @@ cmap <leader>e <C-r>=expand("%:h")<CR>/
 map <leader>vt :tabe ~/.vimrc<CR>
 map <leader>vs :source ~/.vimrc<CR>
 
+" Fast VundleInstall
+map <leader>vb :VundleInstall<CR>
+
 " Clear highlight
 map <silent> <leader>c :nohlsearch<CR>
 
@@ -308,7 +312,6 @@ map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR
 
 " Dont continue comments when pushing o/O
 au FileType * setl formatoptions-=cro
-
 
 " Plugin settings
 
@@ -365,6 +368,8 @@ vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
+
+map - :Switch<CR>
 
 " Functions
 
