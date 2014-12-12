@@ -5,7 +5,7 @@
 " This must be first, because it changes other options as a side effect.
 set nocompatible
 
-" Vundle config
+" ============ Vundle config ============
 filetype off                   " required!
 
 set rtp+=~/.vim/bundle/vundle/
@@ -33,6 +33,7 @@ Bundle 'L9'
 Bundle 'molokai'
 
 filetype plugin indent on     " required!
+" ============ End of Vundle config ============
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
