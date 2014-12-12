@@ -80,6 +80,10 @@ set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
 " Statusline always on
 set laststatus=2
 
+" Set title of the window to filename [+=-] (path) - VIM
+" Only available when compiled with the +title feature
+set title
+
 " Minimal number of lines to keep above and below the cursor
 " Typewriter mode = keep current line in the center
 set scrolloff=999
