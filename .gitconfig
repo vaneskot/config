@@ -28,6 +28,7 @@
   s = status -uno
   vd = difftool
   rh = reset HEAD
+  ap = add --patch
 [grep]
   lineNumber = true
 [color]
