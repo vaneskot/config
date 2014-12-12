@@ -114,13 +114,6 @@ set nofoldenable
 " Forbid scanning through boost files for autocompletion
 set include=^\\s*#\\s*include\ \\(<boost/\\)\\@!
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
-" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
-" so that you can undo CTRL-U after inserting a line break.
-inoremap <C-U> <C-G>u<C-U>
-
 " We don't need no fckin mouse
 set mouse=
 
@@ -201,6 +194,13 @@ if has("win32")
 else
   set langmap=ФИСВУАПРШОЛДЬТЩЗЙКЫЕГМЦЧНЯ;ABCDEFGHIJKLMNOPQRSTUVWXYZ,фисвуапршолдьтщзйкыегмцчня;abcdefghijklmnopqrstuvwxyz
 endif
+
+" Don't use Ex mode, use Q for formatting
+map Q gq
+
+" CTRL-U in insert mode deletes a lot.  Use CTRL-G u to first break undo,
+" so that you can undo CTRL-U after inserting a line break.
+inoremap <C-U> <C-G>u<C-U>
 
 " Visual shifting
 vnoremap < <gv
@@ -298,12 +298,16 @@ imap     <c-e> <c-o>$
 cnoremap <c-a> <home>
 imap     <c-a> <c-o>^
 
+" Git maps
+map <leader>gC :!git checkout %<CR>
+map <leader>ga :!git add %<CR>
+map <leader>gp :!git add -p %<CR>
+
+" Ctags/cscope maps
 map <leader>tt :tab tag
 map <leader>th :tab tag <C-R><C-W>.h<CR>
 map <leader>tj :tab tj <C-R><C-W><CR>
-
 map <leader>cs :tab cs find s <C-R><C-W><CR>
-map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
 
 " Dont continue comments when pushing o/O
 au FileType * setl formatoptions-=cro
@@ -361,11 +365,13 @@ map <leader>s :tabe %<CR>:Gstatus<CR>
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
-map <leader>gC :!git checkout %<CR>
-map <leader>ga :!git add %<CR>
-map <leader>gp :!git add -p %<CR>
 
 map - :Switch<CR>
+
+" Merge helper - open merge conflict in separate window.
+" Conflict should be in format <<< ||| === >>> and cursor should stand before
+" <<< for the map to work properly.
+map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
 
 " Functions
 
