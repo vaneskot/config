@@ -363,6 +363,7 @@ vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
+map <leader>gp :!git add -p %<CR>
 
 map - :Switch<CR>
 
