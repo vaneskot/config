@@ -295,8 +295,8 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR><C-O>
 " Exit insert mode with jj
 map! jj <Esc>
 
-" Run python file
-map <leader>p :!python %<CR>
+" Paste like in paste mode without entering paste mode.
+map <leader>p :r!cat<CR>
 
 " Allow bash-like movement with CTRL-E and CTRL-A in command and insert modes.
 cnoremap <c-e> <end>
