@@ -176,6 +176,15 @@ if has("autocmd")
     au! BufRead,BufNewFile .bash_aliases set filetype=sh expandtab tabstop=2 shiftwidth=2
     au! BufRead,BufNewFile */WebKit/*.cpp,*/WebKit/*.h  set filetype=cpp expandtab tabstop=4 shiftwidth=4
   augroup END
+
+  " Compile/execute file on <leader>r
+  augroup run_command
+    au! BufRead,BufNewFile *.cpp let run_command="!g++ % -o %<"
+    au! BufRead,BufNewFile */browser*/*.cpp let run_command="!ninja -C out/Debug chrome"
+    au! BufRead,BufNewFile *.py let run_command="!python %"
+    au! BufRead,BufNewFile *.sml let run_command="!sml %"
+    map <leader>r :execute run_command<CR>
+  augroup END
 else
   " always set autoindenting on
   set autoindent
