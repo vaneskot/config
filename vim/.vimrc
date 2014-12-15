@@ -206,41 +206,6 @@ endif
 " Encodings
 set fileencodings=utf-8,cp1251
 
-" Functions
-
-function! GetUserName()
-  let s:default_user_name = "Ivan Kotenkov"
-  return executable('git') ? system('git config --get user.name')[:-2] : s:default_user_name
-endfunction
-
-function! GetUserEmail()
-  let s:default_user_email = "ivan.kotenkov@gmail.com"
-  return executable('git') ? system('git config --get user.email')[:-2] : s:default_user_email
-endfunction
-
-function! CppAuthor()
-  let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
-  let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
-  let s:result_list = [s:author]
-  if (match(s:author, "yandex-team") != -1)
-    call insert(s:result_list, s:copyright)
-  endif
-  return s:result_list
-endfunction
-
-function! CppHeaderNewFile()
-  let s:name = substitute(expand("%:t"), "[.]", "_", "")
-  let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
-  let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
-  call setline(line("."), s:str_list)
-  7
-endfunction
-
-function! CppImplNewFile()
-  call setline(line("."), CppAuthor() + ["", ""])
-  4
-endfunction
-
 " Maps
 
 " Russian language support
@@ -445,3 +410,38 @@ map - :Switch<CR>
 " Conflict should be in format <<< ||| === >>> and cursor should stand before
 " <<< for the map to work properly.
 map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
+
+" Functions
+
+function! GetUserName()
+  let s:default_user_name = "Ivan Kotenkov"
+  return executable('git') ? system('git config --get user.name')[:-2] : s:default_user_name
+endfunction
+
+function! GetUserEmail()
+  let s:default_user_email = "ivan.kotenkov@gmail.com"
+  return executable('git') ? system('git config --get user.email')[:-2] : s:default_user_email
+endfunction
+
+function! CppAuthor()
+  let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
+  let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
+  let s:result_list = [s:author]
+  if (match(s:author, "yandex-team") != -1)
+    call insert(s:result_list, s:copyright)
+  endif
+  return s:result_list
+endfunction
+
+function! CppHeaderNewFile()
+  let s:name = substitute(expand("%:t"), "[.]", "_", "")
+  let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
+  let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
+  call setline(line("."), s:str_list)
+  7
+endfunction
+
+function! CppImplNewFile()
+  call setline(line("."), CppAuthor() + ["", ""])
+  4
+endfunction
