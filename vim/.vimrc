@@ -65,8 +65,9 @@ set smartcase
 
 " Set tab to 2 spaces
 set expandtab
-set ts=2
-set sw=2
+set tabstop=2
+set shiftwidth=2
+set shiftround
 
 " Highlight 81 column
 if version >= 703
