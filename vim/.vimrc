@@ -415,6 +415,7 @@ if has("autocmd")
 endif
 
 let g:startify_bookmarks = ['~/.vimrc',]
+let g:startify_change_to_dir = 0
 if executable('fortune')
   let g:startify_custom_header = map(split(system('fortune ~/.vim/vimtips'), '\n'), '"   ". v:val') + ['','']
 endif
