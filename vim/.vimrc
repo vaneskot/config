@@ -41,12 +41,6 @@ filetype plugin indent on     " required!
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
-"if has("vms")
-"  set nobackup		" do not keep a backup file, use versions instead
-"else
-"  set backup		" keep a backup file
-"endif
-
 set undofile
 set undodir=~/.vim/undodir
 
@@ -206,7 +200,7 @@ endif " has("autocmd")
 " Only define it when not defined already.
 if !exists(":DiffOrig")
   command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-		  \ | wincmd p | diffthis
+      \ | wincmd p | diffthis
 endif
 
 " Encodings
@@ -400,8 +394,8 @@ let g:rbpt_colorpairs = [
   \ ['darkgray',    'DarkOrchid3'],
   \ ['darkgreen',   'firebrick3'],
   \ ['darkcyan',    'RoyalBlue3'],
-	\ ['darkmagenta', 'DarkOrchid3'],
-	\ ['darkred',     'DarkOrchid3'],
+  \ ['darkmagenta', 'DarkOrchid3'],
+  \ ['darkred',     'DarkOrchid3'],
   \ ]
 
 if has("autocmd")
@@ -418,7 +412,7 @@ let g:startify_bookmarks = ['~/.vimrc',]
 if BashHasCommand('fortune')
   let g:startify_custom_header = map(split(system('fortune ~/.vim/vimtips'), '\n'), '"   ". v:val') + ['','']
 endif
-highlight StartifyHeader  ctermfg=114
+highlight StartifyHeader ctermfg=114
 
 " Plugin maps
 
