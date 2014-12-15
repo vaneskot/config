@@ -218,11 +218,11 @@ if has("autocmd")
 
   " Compile/execute file on <leader>r
   augroup run_command
-    au! BufRead,BufNewFile *.cpp let b:run_command="!g++ % -o %<"
-    au! BufRead,BufNewFile */browser*/*.cpp let b:run_command="!ninja -C out/Debug chrome"
+    au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!g++ % -o %<"
+    au! BufRead,BufNewFile */browser*/*.cpp,*/browser*/*.cc,*/browser*/*.h let b:run_command="!ninja -C out/Debug chrome"
     au! BufRead,BufNewFile *.py let b:run_command="!python %"
     au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
-    map <leader>r :execute b:run_command<CR>
+    nmap <expr> <leader>r exists('b:run_command') ? ':execute b:run_command<CR>' : ''
   augroup END
 
   " Automatically add define guards to a header file
