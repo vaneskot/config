@@ -340,7 +340,7 @@ map <leader>vt :tabe ~/.vimrc<CR>
 map <leader>vs :source ~/.vimrc<CR>
 
 " Fast VundleInstall
-map <leader>vb :VundleInstall<CR>
+map <leader>vb :source ~/.vimrc<CR>:VundleInstall<CR>
 
 " Clear highlight
 map <silent> <leader>c :nohlsearch<CR>
