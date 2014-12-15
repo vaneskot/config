@@ -19,6 +19,7 @@ Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
+Bundle 'https://github.com/mhinz/vim-startify.git'
 Bundle 'https://github.com/scrooloose/nerdtree.git'
 Bundle 'https://github.com/scrooloose/syntastic.git'
 Bundle 'https://github.com/sjl/gundo.vim.git'
@@ -29,6 +30,7 @@ Bundle 'https://github.com/tpope/vim-sensible.git'
 Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'https://github.com/vim-scripts/IndexedSearch.git'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
+
 " vim-scripts repos
 Bundle 'L9'
 Bundle 'molokai'
@@ -411,6 +413,12 @@ if has("autocmd")
   autocmd FileType sml set commentstring=(*\ %s\ *)
   autocmd FileType cpp set commentstring=//\ %s
 endif
+
+let g:startify_bookmarks = ['~/.vimrc',]
+if BashHasCommand('fortune')
+  let g:startify_custom_header = map(split(system('fortune ~/.vim/vimtips'), '\n'), '"   ". v:val') + ['','']
+endif
+highlight StartifyHeader  ctermfg=114
 
 " Plugin maps
 
