@@ -246,7 +246,7 @@ nmap <F8> :w<CR>
 map <F9>  <ESC>:q<CR>
 map <F10> <ESC>:wq<CR>
 map <F11> <ESC>:wqa<CR>
-map <leader>q :tabclose<CR>:tabprevious<CR>
+noremap <expr> <leader>q tabpagenr('$') > 1 ? ':tabclose<CR>:tabprevious<CR>' : ':q<CR>'
 
 nnoremap <silent> <PageUp> <C-U><C-U>
 vnoremap <silent> <PageUp> <C-U><C-U>
