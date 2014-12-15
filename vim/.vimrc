@@ -208,18 +208,14 @@ set fileencodings=utf-8,cp1251
 
 " Functions
 
-function! BashHasCommand(command)
-  return stridx(system('command -v ' . a:command), a:command) != -1
-endfunction
-
 function! GetUserName()
   let s:default_user_name = "Ivan Kotenkov"
-  return BashHasCommand('git') ? system('git config --get user.name')[:-2] : s:default_user_name
+  return executable('git') ? system('git config --get user.name')[:-2] : s:default_user_name
 endfunction
 
 function! GetUserEmail()
   let s:default_user_email = "ivan.kotenkov@gmail.com"
-  return BashHasCommand('git') ? system('git config --get user.email')[:-2] : s:default_user_email
+  return executable('git') ? system('git config --get user.email')[:-2] : s:default_user_email
 endfunction
 
 function! CppAuthor()
@@ -409,7 +405,7 @@ if has("autocmd")
 endif
 
 let g:startify_bookmarks = ['~/.vimrc',]
-if BashHasCommand('fortune')
+if executable('fortune')
   let g:startify_custom_header = map(split(system('fortune ~/.vim/vimtips'), '\n'), '"   ". v:val') + ['','']
 endif
 highlight StartifyHeader ctermfg=114
