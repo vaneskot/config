@@ -172,21 +172,21 @@ if has("autocmd")
   augroup END
 
   augroup filetype
-    au! BufRead,BufNewFile *.gyp    set filetype=python expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile *.gypi   set filetype=python expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile DEPS     set filetype=python expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile vundlerc set filetype=vim expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile .bash_aliases set filetype=sh expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile */WebKit/*.cpp,*/WebKit/*.h  set filetype=cpp expandtab tabstop=4 shiftwidth=4
+    au! BufRead,BufNewFile *.gyp    setlocal filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile *.gypi   setlocal filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile DEPS     setlocal filetype=python expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile vundlerc setlocal filetype=vim expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile .bash_aliases setlocal filetype=sh expandtab tabstop=2 shiftwidth=2
+    au! BufRead,BufNewFile */WebKit/*.cpp,*/WebKit/*.h  setlocal filetype=cpp expandtab tabstop=4 shiftwidth=4
   augroup END
 
   " Compile/execute file on <leader>r
   augroup run_command
-    au! BufRead,BufNewFile *.cpp let run_command="!g++ % -o %<"
-    au! BufRead,BufNewFile */browser*/*.cpp let run_command="!ninja -C out/Debug chrome"
-    au! BufRead,BufNewFile *.py let run_command="!python %"
-    au! BufRead,BufNewFile *.sml let run_command="!sml %"
-    map <leader>r :execute run_command<CR>
+    au! BufRead,BufNewFile *.cpp let b:run_command="!g++ % -o %<"
+    au! BufRead,BufNewFile */browser*/*.cpp let b:run_command="!ninja -C out/Debug chrome"
+    au! BufRead,BufNewFile *.py let b:run_command="!python %"
+    au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
+    map <leader>r :execute b:run_command<CR>
   augroup END
 
   " Automatically add define guards to a header file
