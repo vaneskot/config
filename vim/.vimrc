@@ -185,6 +185,14 @@ if has("autocmd")
     au! BufRead,BufNewFile *.sml let run_command="!sml %"
     map <leader>r :execute run_command<CR>
   augroup END
+
+  " Automatically add define guards to a header file
+  augroup headers
+    autocmd BufNewFile *.h call CppHeaderNewFile()
+    autocmd BufNewFile *.hpp call CppHeaderNewFile()
+    autocmd BufNewFile *.cpp call CppImplNewFile()
+    autocmd BufNewFile *.cc call CppImplNewFile()
+  augroup END
 else
   " always set autoindenting on
   set autoindent
@@ -200,6 +208,45 @@ endif
 
 " Encodings
 set fileencodings=utf-8,cp1251
+
+" Functions
+
+function! BashHasCommand(command)
+  return stridx(system('command -v ' . a:command), a:command) != -1
+endfunction
+
+function! GetUserName()
+  let s:default_user_name = "Ivan Kotenkov"
+  return BashHasCommand('git') ? system('git config --get user.name')[:-2] : s:default_user_name
+endfunction
+
+function! GetUserEmail()
+  let s:default_user_email = "ivan.kotenkov@gmail.com"
+  return BashHasCommand('git') ? system('git config --get user.email')[:-2] : s:default_user_email
+endfunction
+
+function! CppAuthor()
+  let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
+  let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
+  let s:result_list = [s:author]
+  if (match(s:author, "yandex-team") != -1)
+    call insert(s:result_list, s:copyright)
+  endif
+  return s:result_list
+endfunction
+
+function! CppHeaderNewFile()
+  let s:name = substitute(expand("%:t"), "[.]", "_", "")
+  let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
+  let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
+  call setline(line("."), s:str_list)
+  7
+endfunction
+
+function! CppImplNewFile()
+  call setline(line("."), CppAuthor() + ["", ""])
+  4
+endfunction
 
 " Maps
 
@@ -330,7 +377,6 @@ au FileType * setl formatoptions-=cro
 " Plugin settings
 
 " Use gcc, then cpplint as cpp checkers
-" TODO: check whether the plugin is loaded
 let g:syntastic_cpp_checkers=['gcc', 'cpplint']
 
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
@@ -360,12 +406,6 @@ if has("autocmd")
   au Syntax * RainbowParenthesesLoadBraces
   au Syntax * RainbowParenthesesLoadRound
   au Syntax * RainbowParenthesesLoadSquare
-
-  " Automatically add define guards to a header file
-  autocmd BufNewFile *.h call CppHeaderNewFile()
-  autocmd BufNewFile *.hpp call CppHeaderNewFile()
-  autocmd BufNewFile *.cpp call CppImplNewFile()
-  autocmd BufNewFile *.cc call CppImplNewFile()
 endif
 
 " Plugin maps
@@ -387,42 +427,3 @@ map - :Switch<CR>
 " Conflict should be in format <<< ||| === >>> and cursor should stand before
 " <<< for the map to work properly.
 map <leader>M  /<<<<<<<<CR>j V/\|\|\|\|\|\|\|<CR>k :NR<CR> <C-W>w njV/=======<CR>k :NR<CR> <C-W>w<C-W>H <C-W>W njV/>>>>>>><CR>k :NR<CR> <C-W>W <C-W>T :tabprevious<CR> <C-W>k<C-W>J <C-W>w :diffthis<CR> <C-W>w :diffthis<CR>
-
-" Functions
-
-function! BashHasCommand(command)
-  return stridx(system('command -v ' . a:command), a:command) != -1
-endfunction
-
-function! GetUserName()
-  let s:default_user_name = "Ivan Kotenkov"
-  return BashHasCommand('git') ? system('git config --get user.name')[:-2] : s:default_user_name
-endfunction
-
-function! GetUserEmail()
-  let s:default_user_email = "ivan.kotenkov@gmail.com"
-  return BashHasCommand('git') ? system('git config --get user.email')[:-2] : s:default_user_email
-endfunction
-
-function! CppAuthor()
-  let s:copyright = "// Copyright (c) " . strftime("%Y") . " Yandex LLC. All rights reserved."
-  let s:author = "// Author: " . GetUserName() . " <" . GetUserEmail() . ">"
-  let s:result_list = [s:author]
-  if (match(s:author, "yandex-team") != -1)
-    call insert(s:result_list, s:copyright)
-  endif
-  return s:result_list
-endfunction
-
-function! CppHeaderNewFile()
-  let s:name = substitute(expand("%:t"), "[.]", "_", "")
-  let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
-  let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
-  call setline(line("."), s:str_list)
-  7
-endfunction
-
-function! CppImplNewFile()
-  call setline(line("."), CppAuthor() + ["", ""])
-  4
-endfunction
