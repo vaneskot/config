@@ -414,6 +414,22 @@ if BashHasCommand('fortune')
 endif
 highlight StartifyHeader ctermfg=114
 
+let g:airline_enable_branch = 0
+let g:airline_enable_syntastic = 1
+let g:airline_mode_map = {
+    \ '__' : '-',
+    \ 'n'  : 'N',
+    \ 'i'  : 'I',
+    \ 'R'  : 'R',
+    \ 'c'  : 'C',
+    \ 'v'  : 'V',
+    \ 'V'  : 'V',
+    \ '' : 'V',
+    \ 's'  : 'S',
+    \ 'S'  : 'S',
+    \ '' : 'S',
+    \ }
+
 " Plugin maps
 
 " Switch between header and cpp file
