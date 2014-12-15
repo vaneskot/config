@@ -331,6 +331,9 @@ map <leader>th :tab tag <C-R><C-W>.h<CR>
 map <leader>tj :tab tj <C-R><C-W><CR>
 map <leader>cs :tab cs find s <C-R><C-W><CR>
 
+" Sort selected lines
+vmap <leader>s :sort<CR>
+
 " Dont continue comments when pushing o/O
 au FileType * setl formatoptions-=cro
 
@@ -401,7 +404,7 @@ map <leader>hv <C-w><C-v><leader>hh
 
 map <leader>u :GundoToggle<CR>
 
-map <leader>s :tabe %<CR>:Gstatus<CR>
+nmap <leader>s :tabe %<CR>:Gstatus<CR>
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
