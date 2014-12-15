@@ -15,6 +15,7 @@ Bundle 'https://github.com/gmarik/vundle.git'
 
 Bundle 'https://github.com/AndrewRadev/switch.vim.git'
 Bundle 'https://github.com/Lokaltog/vim-easymotion.git'
+Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
