@@ -407,6 +407,9 @@ if has("autocmd")
   au Syntax * RainbowParenthesesLoadBraces
   au Syntax * RainbowParenthesesLoadRound
   au Syntax * RainbowParenthesesLoadSquare
+
+  autocmd FileType sml set commentstring=(*\ %s\ *)
+  autocmd FileType cpp set commentstring=//\ %s
 endif
 
 " Plugin maps
