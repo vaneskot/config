@@ -386,12 +386,9 @@ let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
 let g:alternateExtensions_mm = "h"
 
 " NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1
-let NERDTreeChDirMode=2
+nmap <leader>n :NERDTreeToggle %<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=0
 " Disable display of the 'Bookmarks' label and 'Press ? for help' text
 let NERDTreeMinimalUI=1
 
