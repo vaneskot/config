@@ -96,8 +96,11 @@ if exists("+showtabline")
     let aux_list = []
     " List with filenames.
     let filename_list = []
-    let tabline_length = 0
     " Separate lists are needed so that we can shorten filenames if there is not enough space in the tabline.
+
+    let tabline_length = 0
+
+    " Generate per-tab description lists
     for i in range(tabpagenr('$'))
       " set up some oft-used variables
       let tab = i + 1 " range() starts at 0
@@ -129,6 +132,7 @@ if exists("+showtabline")
       call add(filename_list, filename_str)
     endfor
 
+    " Shorten filenames if tabs don't fit.
     if tabline_length > &columns
       let n_files = len(filename_list)
       let residue = tabline_length - &columns
@@ -141,9 +145,8 @@ if exists("+showtabline")
         endif
       endfor
     endif
-    let s = JoinTabline(aux_list, filename_list)
 
-    return s
+    return JoinTabline(aux_list, filename_list)
   endfunction
   set tabline=%!MyTabLine()
 endif
