@@ -29,6 +29,8 @@
   vd = difftool
   rh = reset HEAD
   ap = add --patch
+  pc = push origin HEAD
+  ca = commit --amend
 [grep]
   lineNumber = true
 [color]
