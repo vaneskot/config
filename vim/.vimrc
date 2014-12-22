@@ -82,7 +82,7 @@ set laststatus=2
 " Modified tabline from http://www.offensivethinking.org/data/dotfiles/vimrc
 set showtabline=2
 if exists("+showtabline")
-  function JoinTabline(aux_list, filename_list)
+  function! JoinTabline(aux_list, filename_list)
     let s = ''
     for i in range(len(a:aux_list))
       let s .= a:aux_list[i] . a:filename_list[i]
@@ -140,8 +140,8 @@ if exists("+showtabline")
       for i in range(len(filename_list))
         if i != tabpagenr() - 1
           let current_element_len = len(filename_list[i])
-          let current_crop_len = current_element_len > crop_len ? crop_len : current_element_len - 1
-          let filename_list[i] = strpart(filename_list[i], current_crop_len)
+          let new_len = current_element_len - 1 > crop_len ? current_element_len - 1 - crop_len : 1
+          let filename_list[i] = strpart(filename_list[i], 0, new_len) . ' '
         endif
       endfor
     endif
