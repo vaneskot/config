@@ -42,4 +42,5 @@
 [rebase]
   autostash = true
 [clangFormat]
+  binary = ~/projects/browser/src/buildtools/mac/clang-format
   style = chromium
