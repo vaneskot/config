@@ -39,6 +39,11 @@ Bundle 'molokai'
 filetype plugin indent on     " required!
 " ============ End of Vundle config ============
 
+" Ninja plugin from Chromium, allows single file compilation.
+if filereadable(expand("~/projects/browser/src/tools/vim/ninja-build.vim"))
+  source ~/projects/browser/src/tools/vim/ninja-build.vim
+endif
+
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
 
@@ -251,7 +256,7 @@ if has("autocmd")
   " Compile/execute file on <leader>r
   augroup run_command
     au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!g++ % -o %<"
-    au! BufRead,BufNewFile */browser*/*.cpp,*/browser*/*.cc,*/browser*/*.h let b:run_command="!ninja -C out/Debug chrome"
+    au! BufRead,BufNewFile */browser*/*.cpp,*/browser*/*.cc,*/browser*/*.h let b:run_command=":CrCompileFile"
     au! BufRead,BufNewFile *.py let b:run_command="!python %"
     au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
     nmap <expr> <leader>r exists('b:run_command') ? ':execute b:run_command<CR>' : ''
@@ -405,6 +410,11 @@ map <leader>cs :tab cs find s <C-R><C-W><CR>
 
 " Sort selected lines
 vmap <leader>s :sort<CR>
+
+" clang-format selected lines or current line if none are selected.
+if filereadable(expand("~/projects/browser/src/buildtools/clang_format/script/clang-format.py"))
+  map <leader>cf :pyf ~/projects/browser/src/buildtools/clang_format/script/clang-format.py<CR>
+endif
 
 " Dont continue comments when pushing o/O
 au FileType * setl formatoptions-=cro
