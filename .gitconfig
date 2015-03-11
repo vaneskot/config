@@ -11,6 +11,7 @@
   editor = vim
   safecrlf = false
   preloadindex = true
+  excludesfile = ~/.gitignore_global
 [diff]
   tool = vimdiff
 [difftool]

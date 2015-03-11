@@ -22,6 +22,7 @@ link .bash bash
 link .vimrc vim
 link .vim vim
 link .gitconfig .
+link .gitignore_global .
 link scripts .
 link .screenrc
 cd -
