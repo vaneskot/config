@@ -17,6 +17,7 @@ Bundle 'https://github.com/AndrewRadev/switch.vim.git'
 Bundle 'https://github.com/Lokaltog/vim-easymotion.git'
 Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
+Bundle 'https://github.com/derekwyatt/vim-scala.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'https://github.com/mhinz/vim-startify.git'
@@ -255,10 +256,12 @@ if has("autocmd")
 
   " Compile/execute file on <leader>r
   augroup run_command
-    au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!g++ % -o %<"
+    au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!clang++ -g -std=c++11 % -o %<"
     au! BufRead,BufNewFile */browser*/*.cpp,*/browser*/*.cc,*/browser*/*.h let b:run_command=":CrCompileFile"
     au! BufRead,BufNewFile *.py let b:run_command="!python %"
     au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
+    au! BufRead,BufNewFile *.js let b:run_command="!/usr/local/bin/node %"
+    au! BufRead,BufNewFile *.scala let b:run_command="!scala %"
     nmap <expr> <leader>r exists('b:run_command') ? ':execute b:run_command<CR>' : ''
   augroup END
 
@@ -423,6 +426,8 @@ au FileType * setl formatoptions-=cro
 
 " Use gcc, then cpplint as cpp checkers
 let g:syntastic_cpp_checkers=['gcc', 'cpplint']
+let g:syntastic_cpp_check_header = 1
+let g:syntastic_cpp_compiler_options = '-std=c++11'
 
 let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
 let g:alternateExtensions_mm = "h"
