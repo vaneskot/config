@@ -21,6 +21,7 @@ alias grep='grep --color=auto'
 alias fgrep='fgrep --color=auto'
 alias egrep='egrep --color=auto'
 alias ack='ack --ignore-file=is:tags --ignore-file=ext:out'
+alias node='/usr/local/bin/node'
 
 alias ..='cd ..'
 alias ...='cd .. ; cd ..'
@@ -38,3 +39,9 @@ if [ -f $shad_activate ]; then
   alias activate-shad="source $shad_activate"
   alias notebook='ipython notebook --pylab=inline'
 fi
+
+alias bchrome='anybar red && ninja -j 24 -C out/Debug chrome; anybar green'
+alias bweb='anybar red && ninja -j 24 -C out/Debug webkit_unit_tests; anybar green'
+alias bbtests='anybar red && ninja -j 24 -C out/Debug browser_tests custo_browser_tests; anybar green'
+alias bgyp='anybar red && gclient sync && sh ~/projects/gyp_dist_clang.sh; anybar green'
+alias bgchrome='bgyp && bchrome'

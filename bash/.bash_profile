@@ -15,3 +15,9 @@ export PATH=$PATH:$HOME/download/adt-bundle-linux-x86_64-20131030/eclipse
 if [[ $platform == 'Darwin' ]]; then
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+  . $(brew --prefix)/etc/bash_completion
+fi
+
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
+function anybar { echo -n $1 | nc -4u -w0 localhost ${2:-1738}; }
