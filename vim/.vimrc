@@ -404,6 +404,7 @@ imap     <c-a> <c-o>^
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
 map <leader>gp :!git add -p %<CR>
+map <leader>gc :!git mdc %<CR>
 
 " Ctags/cscope maps
 map <leader>tt :tab tag

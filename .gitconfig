@@ -26,7 +26,7 @@
   ds = diff --stat
   g = grep --break --heading --line-number --color=always
   md = multidiff
-  mdc = multidiff `git merge-base HEAD origin/upstream/dev` --
+  mdc = multidiff-chromium
   s = status -uno
   vd = difftool
   rh = reset HEAD
