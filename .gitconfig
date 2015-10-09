@@ -26,12 +26,14 @@
   ds = diff --stat
   g = grep --break --heading --line-number --color=always
   md = multidiff
+  mdc = multidiff `git merge-base HEAD origin/upstream/dev` --
   s = status -uno
   vd = difftool
   rh = reset HEAD
   ap = add --patch
   pc = push origin HEAD
   ca = commit --amend
+  l1 = log -1
 [grep]
   lineNumber = true
 [color]
