@@ -372,6 +372,9 @@ noremap <down>  <C-W>-
 noremap <left>  3<C-W><
 noremap <right> 3<C-W>>
 
+" Remove that stupid window.
+map q: :q
+
 " Jump to tag in a new tab
 map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
