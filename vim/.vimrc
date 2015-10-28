@@ -353,6 +353,9 @@ nmap # #zz
 nmap g* g*zz
 nmap g# g#zz
 
+" Select text that was just pasted
+noremap gV `[v`]
+
 " Forbid arrow movement
 noremap <Up> <nop>
 noremap <Down> <nop>
