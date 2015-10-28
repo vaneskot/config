@@ -362,6 +362,12 @@ inoremap <Down> <nop>
 inoremap <Left> <nop>
 inoremap <Right> <nop>
 
+" Use arrow keys to resize windows
+noremap <up>    <C-W>+
+noremap <down>  <C-W>-
+noremap <left>  3<C-W><
+noremap <right> 3<C-W>>
+
 " Jump to tag in a new tab
 map <C-W>} :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 
