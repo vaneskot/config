@@ -1,10 +1,19 @@
 #/bin/bash
 if [[ $# != 0 ]]; then
-  merge_commit=`git rev-list --ancestry-path --merges "$1..origin/master" | tail -1`
-  commit_header=`git log -1 --pretty=format:%s $merge_commit`
-  echo $commit_header
-  platform=`uname`
-  if [[ $platform == 'Darwin' ]]; then
-    open "https://stash.desktop.dev.yandex.net/projects/STARDUST/repos/browser/pull-requests/`echo $commit_header | awk '{print substr($4, 2, length($4) - 1)}'`"
+  repo_name=$(git rev-parse --show-toplevel)
+  if [[ $repo_name == *browser* ]]
+  then
+    merge_commit=`git rev-list --ancestry-path --merges "$1..origin/master" | tail -1`
+    commit_header=`git log -1 --pretty=format:%s $merge_commit`
+    echo $commit_header
+    platform=`uname`
+    if [[ $platform == 'Darwin' ]]; then
+      open "https://stash.desktop.dev.yandex.net/projects/STARDUST/repos/browser/pull-requests/`echo $commit_header | awk '{print substr($4, 2, length($4) - 1)}'`"
+    fi
+  elif [[ $repo_name == *chromium* ]]
+  then
+    open $(git log -1 $1 | python -c "import sys; import re; regex = re.compile('Review URL: (https://[^\s]*)'); print filter(lambda x: x, map(regex.search, sys.stdin.read().split('\n')))[-1].group(1)")
+  else
+    echo "Wrong repository. You should cd inside chromium or browser repository."
   fi
 fi
