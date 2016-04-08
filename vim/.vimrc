@@ -511,6 +511,8 @@ nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
 
+nmap <leader>pr :call OpenBlamePullRequest()<CR>
+
 map - :Switch<CR>
 
 " Merge helper - open merge conflict in separate window.
@@ -551,4 +553,9 @@ endfunction
 function! CppImplNewFile()
   call setline(line("."), CppAuthor() + ["", ""])
   4
+endfunction
+
+function! OpenBlamePullRequest()
+  let s:line = line(".")
+  exe "!git blame -s -L" . s:line . "," . s:line . " -- " . expand("%"). " | awk '{print $1}' | xargs show-pull-request"
 endfunction
