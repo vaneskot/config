@@ -289,6 +289,9 @@ endif
 " Encodings
 set fileencodings=utf-8,cp1251
 
+" Abbreviations
+iab retrun return
+
 " Maps
 
 " Russian language support
