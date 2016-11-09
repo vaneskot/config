@@ -5,6 +5,7 @@
   rebase = true
 [merge]
   tool = vimdiff
+  conflictstyle = diff3
 [core]
   autocrlf = false
   deltaBaseCacheLimit = 1G
