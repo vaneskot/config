@@ -434,8 +434,8 @@ map <leader>cs :tab cs find s <C-R><C-W><CR>
 vmap <leader>s :sort<CR>
 
 " clang-format selected lines or current line if none are selected.
-if filereadable(expand("~/projects/browser/src/buildtools/clang_format/script/clang-format.py"))
-  map <leader>cf :pyf ~/projects/browser/src/buildtools/clang_format/script/clang-format.py<CR>
+if filereadable(expand("~/projects/config/vim/clang-format.py"))
+  map <leader>cf :pyf ~/projects/config/vim/clang-format.py<CR>
 endif
 
 " Dont continue comments when pushing o/O
