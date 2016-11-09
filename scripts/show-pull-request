@@ -12,7 +12,7 @@ if [[ $# != 0 ]]; then
     fi
   elif [[ $repo_name == *chromium* ]]
   then
-    open $(git log -1 $1 | python -c "import sys; import re; regex = re.compile('Review URL: (https://[^\s]*)'); print filter(lambda x: x, map(regex.search, sys.stdin.read().split('\n')))[-1].group(1)")
+    open $(git log -1 $1 | python -c "import sys; import re; regex = re.compile('Review-Url: (https://[^\s]*)'); print filter(lambda x: x, map(regex.search, sys.stdin.read().split('\n')))[-1].group(1)")
   else
     echo "Wrong repository. You should cd inside chromium or browser repository."
   fi
