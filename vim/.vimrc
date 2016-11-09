@@ -254,7 +254,6 @@ if has("autocmd")
     au! BufRead,BufNewFile DEPS     setlocal filetype=python expandtab tabstop=2 shiftwidth=2
     au! BufRead,BufNewFile vundlerc setlocal filetype=vim expandtab tabstop=2 shiftwidth=2
     au! BufRead,BufNewFile .bash_aliases setlocal filetype=sh expandtab tabstop=2 shiftwidth=2
-    au! BufRead,BufNewFile */WebKit/*.cpp,*/WebKit/*.h  setlocal filetype=cpp expandtab tabstop=4 shiftwidth=4
   augroup END
 
   " Compile/execute file on <leader>r
