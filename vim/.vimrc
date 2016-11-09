@@ -15,9 +15,11 @@ Bundle 'https://github.com/gmarik/vundle.git'
 
 Bundle 'https://github.com/AndrewRadev/switch.vim.git'
 Bundle 'https://github.com/Lokaltog/vim-easymotion.git'
+Bundle 'https://github.com/SirVer/ultisnips.git'
 Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/derekwyatt/vim-scala.git'
+Bundle 'https://github.com/honza/vim-snippets.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
 Bundle 'https://github.com/mhinz/vim-startify.git'
@@ -455,6 +457,9 @@ let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 " Disable display of the 'Bookmarks' label and 'Press ? for help' text
 let NERDTreeMinimalUI=1
+
+" Ultisnips
+let g:UltiSnipsEditSplit = 'context'
 
 let g:rbpt_colorpairs = [
   \ ['Darkblue',    'SeaGreen3'],
