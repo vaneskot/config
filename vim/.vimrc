@@ -426,7 +426,7 @@ map <leader>gp :!git add -p %<CR>
 map <leader>gc :!git mdc %<CR>
 
 " Ctags/cscope maps
-map <leader>tt :tab tag
+map <leader>tt :tab tag 
 map <leader>th :tab tag <C-R><C-W>.h<CR>
 map <leader>tj :tab tj <C-R><C-W><CR>
 map <leader>cs :tab cs find s <C-R><C-W><CR>
