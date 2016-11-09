@@ -512,7 +512,6 @@ map <leader>hv <C-w><C-v><leader>hh
 
 map <leader>u :GundoToggle<CR>
 
-nmap <leader>s :tabe %<CR>:Gstatus<CR>
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
