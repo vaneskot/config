@@ -266,15 +266,17 @@ if has("autocmd")
     au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
     au! BufRead,BufNewFile *.js let b:run_command="!/usr/local/bin/node %"
     au! BufRead,BufNewFile *.scala let b:run_command="!scala %"
+    au! BufRead,BufNewFile *.ino let b:run_command="!" . (has('mac') ?  "Arduino" : "arduino") . " --upload %"
     nmap <expr> <leader>r exists('b:run_command') ? ':execute b:run_command<CR>' : ''
   augroup END
 
-  " Automatically add define guards to a header file
-  augroup headers
+  augroup new_file_templates
+    " Automatically add define guards to a header file
     autocmd BufNewFile *.h call CppHeaderNewFile()
     autocmd BufNewFile *.hpp call CppHeaderNewFile()
     autocmd BufNewFile *.cpp call CppImplNewFile()
     autocmd BufNewFile *.cc call CppImplNewFile()
+    autocmd BufNewFile *.ino call ArduinoNewFile()
   augroup END
 else
   " always set autoindenting on
@@ -558,6 +560,12 @@ endfunction
 function! CppImplNewFile()
   call setline(line("."), CppAuthor() + ["", ""])
   4
+endfunction
+
+function! ArduinoNewFile()
+  let s:str_list = ["void setup() {", "", "}", "", "void loop() {", "", "}"]
+  call setline(line("."), s:str_list)
+  2
 endfunction
 
 function! OpenBlamePullRequest()

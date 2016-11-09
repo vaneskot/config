@@ -12,6 +12,7 @@ export GYP_GENERATORS=ninja
 ANDROID_HOME=$HOME/download/adt-bundle-linux-x86_64-20131030/sdk
 export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$HOME/download/adt-bundle-linux-x86_64-20131030/eclipse
+export PATH=$PATH:$HOME/Applications/Arduino.app/Contents/MacOs
 if [[ $platform == 'Darwin' ]]; then
   [[ -s `brew --prefix`/etc/autojump.sh ]] && . `brew --prefix`/etc/autojump.sh
 fi
