@@ -45,3 +45,9 @@ alias bweb='anybar red && ninja -j 24 -C out/Debug webkit_unit_tests; anybar gre
 alias bbtests='anybar red && ninja -j 24 -C out/Debug browser_tests custo_browser_tests; anybar green'
 alias bgyp='anybar red && gclient sync && sh ~/projects/gyp_dist_clang.sh; anybar green'
 alias bgchrome='bgyp && bchrome'
+
+alias sshbro='ssh kotenkov.haze.yandex.net'
+alias sshstats='ssh browser-git-stats.haze.yandex.net'
+alias sshnewton='ssh koteniv1@fray1.fit.cvut.cz -L 16286:newton.fit.cvut.cz:16286'
+alias sshfray='ssh koteniv1@fray1.fit.cvut.cz'
+alias sshstar='ssh koteniv1@star.fit.cvut.cz'
