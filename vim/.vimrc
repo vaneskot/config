@@ -553,7 +553,7 @@ function! CppAuthor()
 endfunction
 
 function! CppHeaderNewFile()
-  let s:name = substitute(expand("%:t"), "[.]", "_", "")
+  let s:name = substitute(expand("%"), "[./]", "_", "g")
   let s:new_name = substitute(s:name, ".*", "\\U\\0", "") . "_"
   let s:str_list = CppAuthor() + ["", "#ifndef " . s:new_name, "#define " . s:new_name, "", "", "", "#endif  // " .  s:new_name]
   call setline(line("."), s:str_list)
