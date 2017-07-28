@@ -421,6 +421,9 @@ imap     <c-e> <c-o>$
 cnoremap <c-a> <home>
 imap     <c-a> <c-o>^
 
+" Open file in browser bitbucket repo.
+map <leader>s :execute "!open https://bitbucket.browser.yandex-team.ru/projects/STARDUST/repos/browser/browse/src/" . expand("%") . "\\#" . line(".")<CR>
+
 " Git maps
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
