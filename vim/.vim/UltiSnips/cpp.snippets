@@ -1,0 +1,126 @@
+global !p
+def upper_right(inp):
+    return (75 - 2 * len(inp))*' ' + inp.upper()
+endglobal
+
+snippet main "main function" b
+int main(int argc, char* argv[]) {
+	${0:blahblah}
+	return 0;
+}
+endsnippet
+
+snippet sinc "standard include" b
+#include <${0:something.h}>
+endsnippet
+
+snippet inc "include" b
+#include "${0:something.h}"
+endsnippet
+
+snippet sc "static_cast"
+static_cast<${1:type}>(${2:value})
+endsnippet
+
+snippet mpi "MPI_Init" b
+MPI_Init(&argc, &argv);
+
+endsnippet
+
+snippet for "for loop" b
+for (int i = 0; i < ${1:count}; ++i) {
+	${0:blahblah}
+}
+endsnippet
+
+snippet fix "FIXME" b
+// FIXME(kotenkov): ${0:blahblah}
+endsnippet
+
+snippet ns "Namespace with 2 spaces before comment." b
+namespace${1:`vim_snippets#Filename('', 'my')`} {
+${0:blahblah}
+}  // namespace$1
+endsnippet
+
+snippet nsb "Namespace with 1 space before comment. B is for blink." b
+namespace${1:`vim_snippets#Filename('', 'my')`} {
+
+${0:blahblah}
+
+} // namespace$1
+endsnippet
+
+snippet cl "Chromium-style class" b
+class ${1:`vim_snippets#Filename('$1', 'name')`}
+{
+ public:
+	$1(${2});
+	~$1();
+
+ private:
+	${0:blahblah}
+};
+endsnippet
+
+snippet clb "Blink-style class" b
+class ${1:`vim_snippets#Filename('$1', 'name')`}
+{
+public:
+		$1(${2});
+		~$1();
+
+private:
+		${0:blahblah}
+};
+endsnippet
+
+snippet ifd "#if defined" b
+#if defined($1)
+${0: blahblah}
+#endif  // defined($1)
+endsnippet
+
+snippet ifnd "#if !defined" b
+#if !defined($1)
+
+${0: blahblah}
+
+#endif  // !defined($1)
+endsnippet
+
+# Gtest snippets
+
+snippet ex "EXPECT_EQ" b
+EXPECT_EQ(${1:expected}, ${0:actual});
+endsnippet
+
+snippet exn "EXPECT_NE" b
+EXPECT_NE(${1:expected}, ${0:actual});
+endsnippet
+
+## Chromium snippets
+
+snippet dc "DCHECK" b
+DCHECK(${0:false});
+endsnippet
+
+snippet dce "DCHECK_EQ" b
+DCHECK_EQ(${1:left}, ${0:right});
+endsnippet
+
+snippet dco "DCHECK_IS_ON"
+DCHECK_IS_ON()
+endsnippet
+
+snippet dlog "DLOG(INFO)" b
+DLOG(INFO) << ${0};
+endsnippet
+
+snippet dfunc "DLOG(INFO) << __func__" b
+DLOG(INFO) << __func__ << " "${0};
+endsnippet
+
+snippet dch "DCHECK" b
+DCHECK(${0});
+endsnippet
