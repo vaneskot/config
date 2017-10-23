@@ -19,6 +19,7 @@ Bundle 'https://github.com/SirVer/ultisnips.git'
 Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/derekwyatt/vim-scala.git'
+Bundle 'https://github.com/drmingdrmer/vim-toggle-quickfix.git'
 Bundle 'https://github.com/honza/vim-snippets.git'
 Bundle 'https://github.com/kien/ctrlp.vim.git'
 Bundle 'https://github.com/kien/rainbow_parentheses.vim.git'
@@ -37,6 +38,7 @@ Bundle 'https://github.com/tpope/vim-sensible.git'
 Bundle 'https://github.com/tpope/vim-surround.git'
 Bundle 'https://github.com/vim-scripts/IndexedSearch.git'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
+Bundle 'https://github.com/yssl/QFEnter.git'
 
 " vim-scripts repos
 Bundle 'L9'
@@ -69,6 +71,9 @@ set history=500
 set ruler
 " Display incomplete commands
 set showcmd
+set shortmess=a
+
+" Search and substitution
 set incsearch
 set gdefault
 set ignorecase
@@ -278,6 +283,8 @@ if has("autocmd")
     autocmd BufNewFile *.cc call CppImplNewFile()
     autocmd BufNewFile *.ino call ArduinoNewFile()
   augroup END
+
+  autocmd QuickFixCmdPost *grep* cwindow
 else
   " always set autoindenting on
   set autoindent
@@ -517,9 +524,13 @@ map <leader>hv <C-w><C-v><leader>hh
 
 map <leader>u :GundoToggle<CR>
 
+map <leader>f <Plug>window:quickfix:toggle
+
 nmap <leader>b :.Gblame<CR>
 vmap <leader>b :Gblame<CR>
 map <leader>B :Gblame<CR>
+
+map <leader>gg :silent! Ggrep! <C-R><C-W> -- "*.cc" "*.cpp" \| redraw! <CR>
 
 nmap <leader>pr :call OpenBlamePullRequest()<CR>
 
