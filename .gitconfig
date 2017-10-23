@@ -26,6 +26,10 @@
   d = diff
   ds = diff --stat
   g = grep --break --heading --line-number --color=always
+  gcc = "!git grep --break --heading --line-number --color=always $1 -- '*.cc' '*.cpp'"
+  gch = "!git grep --break --heading --line-number --color=always $1 -- '*.cc' '*.cpp' '*.h'"
+  gh = "!git grep --break --heading --line-number --color=always $1 -- '*.h'"
+  gw = "!git grep --break --heading --line-number --color=always $1 -- src/third_party/WebKit/Source"
   md = multidiff
   mdc = multidiff-chromium
   s = status -uno
