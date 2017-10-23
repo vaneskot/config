@@ -431,6 +431,9 @@ imap     <c-a> <c-o>^
 " Open file in browser bitbucket repo.
 map <leader>s :execute "!open https://bitbucket.browser.yandex-team.ru/projects/STARDUST/repos/browser/browse/src/" . expand("%") . "\\#" . line(".")<CR>
 
+" Show diff with Chromium in browser.
+map <leader>cd :execute "!open http://browser-git-stats.haze.yandex.net/chromium_diff.html?diff=src/" . expand("%")<CR>
+
 " Git maps
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
