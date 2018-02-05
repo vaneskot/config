@@ -1,6 +1,6 @@
-if [ -n "$SSH_CLIENT" ] && [ $TERM != "screen-256color" ];
+if ([ -n "$SSH_CLIENT" ] || [ -n "$SSH_USER" ]) && [ $TERM != "screen-256color" ];
 then
-  screen -R
+  tmux attach || tmux new
 fi
 . ~/.bash/.bashrc
 export ENV=$HOME/.bash/.bashrc
