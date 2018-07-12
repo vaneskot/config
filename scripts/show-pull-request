@@ -7,8 +7,17 @@ if [[ $# != 0 ]]; then
     commit_header=`git log -1 --pretty=format:%s $merge_commit`
     echo $commit_header
     platform=`uname`
-    if [[ $platform == 'Darwin' ]]; then
-      open "https://bitbucket.browser.yandex-team.ru/projects/STARDUST/repos/browser/pull-requests/`echo $commit_header | awk '{print substr($4, 2, length($4) - 1)}'`"
+    name='browser'
+    if ([[ $repo_name == *browser-android* ]])
+    then
+      name='browser-android'
+    fi
+    url="https://bitbucket.browser.yandex-team.ru/projects/STARDUST/repos/$name/pull-requests/`echo $commit_header | awk '{print substr($4, 2, length($4) - 1)}'`"
+    if [[ $platform == 'Darwin' ]]
+    then
+      open $url
+    else
+      echo $url
     fi
   elif [[ $repo_name == *chromium* ]]
   then
