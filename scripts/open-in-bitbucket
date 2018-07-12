@@ -1,0 +1,25 @@
+#/bin/bash
+if [[ $# != 0 ]]; then
+  repo_name=$(git rev-parse --show-toplevel)
+  if [[ $repo_name == *browser* ]]
+  then
+    platform=`uname`
+    name='browser'
+    src='src'
+    if ([[ $repo_name == *browser-android* ]])
+    then
+      name='browser-android'
+      src='browser'
+    fi
+    url="https://bitbucket.browser.yandex-team.ru/projects/STARDUST/repos/$name/browse/$src/$1#$2"
+    if [[ $platform == 'Darwin' ]]
+    then
+      open $url
+    else
+      echo $url
+    fi
+  else
+    echo "Wrong repository. You should cd inside browser or browser-android repository."
+  fi
+fi
+
