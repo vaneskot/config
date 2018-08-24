@@ -36,6 +36,7 @@ Bundle 'https://github.com/tpope/vim-fugitive.git'
 Bundle 'https://github.com/tpope/vim-repeat.git'
 Bundle 'https://github.com/tpope/vim-sensible.git'
 Bundle 'https://github.com/tpope/vim-surround.git'
+Bundle 'https://github.com/udalov/kotlin-vim'
 Bundle 'https://github.com/vim-scripts/IndexedSearch.git'
 Bundle 'https://github.com/vim-scripts/a.vim.git'
 Bundle 'https://github.com/yssl/QFEnter.git'
@@ -85,11 +86,6 @@ set expandtab
 set tabstop=2
 set shiftwidth=2
 set shiftround
-
-" Highlight 81 column
-if version >= 703
-  set colorcolumn=81
-end
 
 set statusline=%<%f%h%m%r%=ft:%y\ l:%l\ c:%c%V\ %p%%
 " Statusline always on
@@ -242,6 +238,9 @@ if has("autocmd")
 
     " For all text files set 'textwidth' to 80 characters.
     autocmd FileType text setlocal textwidth=80
+    autocmd FileType java setlocal textwidth=100 expandtab tabstop=4 shiftwidth=4
+    autocmd FileType kotlin setlocal textwidth=100 expandtab tabstop=4 shiftwidth=4
+    autocmd FileType kotlin setlocal commentstring=//\ %s
 
     " When editing a file, always jump to the last known cursor position.
     " Don't do it when the position is invalid or when inside an event handler
@@ -281,6 +280,8 @@ if has("autocmd")
     autocmd BufNewFile *.hpp call CppHeaderNewFile()
     autocmd BufNewFile *.cpp call CppImplNewFile()
     autocmd BufNewFile *.cc call CppImplNewFile()
+    autocmd BufNewFile *.java call CppImplNewFile()
+    autocmd BufNewFile *.kt call CppImplNewFile()
     autocmd BufNewFile *.ino call ArduinoNewFile()
   augroup END
 
@@ -289,6 +290,10 @@ else
   " always set autoindenting on
   set autoindent
 endif " has("autocmd")
+
+if version >= 703
+  set colorcolumn=+1
+end
 
 " Convenient command to see the difference between the current buffer and the
 " file it was loaded from, thus the changes you made.
@@ -587,5 +592,5 @@ endfunction
 
 function! OpenBlamePullRequest()
   let s:line = line(".")
-  exe "!git blame -s -L" . s:line . "," . s:line . " -- " . expand("%"). " | awk '{print $1}' | xargs show-pull-request"
+  exe "!git blame -s -L" . s:line . "," . s:line . " -- " . expand("%"). " | awk '{print $1}' | xargs bash show-pull-request"
 endfunction
