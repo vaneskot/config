@@ -113,12 +113,12 @@ snippet dco "DCHECK_IS_ON"
 DCHECK_IS_ON()
 endsnippet
 
-snippet dlog "DLOG(INFO)" b
-DLOG(INFO) << ${0};
+snippet log "LOG(INFO)" b
+LOG(INFO) << ${0};
 endsnippet
 
-snippet dfunc "DLOG(INFO) << __func__" b
-DLOG(INFO) << __func__ << " "${0};
+snippet dfunc "LOG(INFO) << __func__" b
+LOG(INFO) << __func__ << " "${0};
 endsnippet
 
 snippet dch "DCHECK" b
