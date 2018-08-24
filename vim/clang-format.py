@@ -28,13 +28,14 @@
 
 import difflib
 import json
+import os
 import subprocess
 import sys
 import vim
 
 # set g:clang_format_path to the path to clang-format if it is not on the path
 # Change this to the full path if clang-format is not on the path.
-binary = '/Users/kotenkov/projects/browser/src/buildtools/mac/clang-format'
+binary = os.environ['HOME'] + '/projects/depot_tools_ya/clang-format'
 if vim.eval('exists("g:clang_format_path")') == "1":
   binary = vim.eval('g:clang_format_path')
 

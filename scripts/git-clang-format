@@ -175,6 +175,8 @@ def load_git_config(non_string_options=None):
       name, value = entry.split('\n', 1)
       if name in non_string_options:
         value = run('git', 'config', non_string_options[name], name)
+      if name == "clangformat.binary":
+        value = os.path.abspath(os.path.expanduser(value))
       out[name] = value
   return out
 
