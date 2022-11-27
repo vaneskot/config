@@ -15,7 +15,7 @@ snippet sinc "standard include" b
 endsnippet
 
 snippet inc "include" b
-#include "${0:something.h}"
+#include "${0:}"
 endsnippet
 
 snippet sc "static_cast"
@@ -123,4 +123,16 @@ endsnippet
 
 snippet dch "DCHECK" b
 DCHECK(${0});
+endsnippet
+
+snippet isv "include string_view" b
+#include "third_party/absl/strings/string_view.h"
+endsnippet
+
+snippet is "include string" b
+#include <string>
+endsnippet
+
+snippet	iv "include vector" b
+#include <vector>
 endsnippet
