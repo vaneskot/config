@@ -264,7 +264,7 @@ if has("autocmd")
 
   " Compile/execute file on <leader>r
   augroup run_command
-    au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!clang++ -g -std=c++11 % -o %<"
+    au! BufRead,BufNewFile *.cpp,*.cc let b:run_command="!clang++ -g -std=c++17 % -o %<"
     au! BufRead,BufNewFile */browser*/*.cpp,*/browser*/*.cc,*/browser*/*.h let b:run_command=":CrCompileFile"
     au! BufRead,BufNewFile *.py let b:run_command="!python %"
     au! BufRead,BufNewFile *.sml let b:run_command="!sml %"
@@ -310,6 +310,9 @@ set fileencodings=utf-8,cp1251
 iab retrun return
 
 " Maps
+
+" Remap leader to space
+let mapleader = "\<Space>"
 
 " Russian language support
 if has("win32")
@@ -433,12 +436,6 @@ imap     <c-e> <c-o>$
 cnoremap <c-a> <home>
 imap     <c-a> <c-o>^
 
-" Open file in browser bitbucket repo.
-map <leader>s :execute "!open-in-bitbucket " . expand("%") . " " . line(".")<CR>
-
-" Show diff with Chromium in browser.
-map <leader>cd :execute "!open http://browser-git-stats.haze.yandex.net/chromium_diff.html?diff=src/" . expand("%")<CR>
-
 " Git maps
 map <leader>gC :!git checkout %<CR>
 map <leader>ga :!git add %<CR>
@@ -473,7 +470,7 @@ let g:alternateExtensions_h = "c,cpp,cxx,cc,CC,mm"
 let g:alternateExtensions_mm = "h"
 
 " NERDTree
-nmap <leader>n :NERDTreeToggle %<CR>
+" nmap <leader>n :NERDTreeToggle %<CR>
 let NERDTreeQuitOnOpen=1
 let NERDTreeShowHidden=1
 " Disable display of the 'Bookmarks' label and 'Press ? for help' text
