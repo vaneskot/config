@@ -1,6 +1,6 @@
 [user]
   name = Ivan Kotenkov
-  email = kotenkov@yandex-team.ru
+  email = vaneskot@yandex.ru
 [branch "master"]
   rebase = true
 [merge]
@@ -49,6 +49,3 @@
   prune = true
 [rebase]
   autostash = true
-[clangFormat]
-  binary = ~/projects/depot_tools_ya/clang-format
-  style = chromium
