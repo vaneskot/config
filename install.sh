@@ -24,5 +24,5 @@ link .vim vim
 link .gitconfig .
 link .gitignore_global .
 link scripts .
-link .tmux.conf
+# link .tmux.conf
 cd -

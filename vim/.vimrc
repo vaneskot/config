@@ -15,7 +15,7 @@ Bundle 'https://github.com/gmarik/vundle.git'
 
 Bundle 'https://github.com/AndrewRadev/switch.vim.git'
 Bundle 'https://github.com/Lokaltog/vim-easymotion.git'
-Bundle 'https://github.com/SirVer/ultisnips.git'
+" Bundle 'https://github.com/SirVer/ultisnips.git'
 Bundle 'https://github.com/bling/vim-airline.git'
 Bundle 'https://github.com/chrisbra/NrrwRgn.git'
 Bundle 'https://github.com/derekwyatt/vim-scala.git'
@@ -47,11 +47,6 @@ Bundle 'molokai'
 
 filetype plugin indent on     " required!
 " ============ End of Vundle config ============
-
-" Ninja plugin from Chromium, allows single file compilation.
-if filereadable(expand("~/projects/browser/src/tools/vim/ninja-build.vim"))
-  source ~/projects/browser/src/tools/vim/ninja-build.vim
-endif
 
 " Allow backspacing over everything in insert mode
 set backspace=indent,eol,start
